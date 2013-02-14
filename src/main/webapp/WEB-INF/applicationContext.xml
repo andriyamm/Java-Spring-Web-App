@@ -35,7 +35,7 @@
 	<!-- the packages to be scanned -->
 	<context:component-scan base-package="org.amm.ams" />
 
-	<!-- Hibernate session factory -->
+	<!-- BEGIN Hibernate session factory -->
 	
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -81,16 +81,19 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>org.amm.ams.domain.Articles</value>
+				<value>org.amm.ams.domain.ArticlesDef</value>
+				<value>org.amm.ams.domain.Bookmarks</value>
+				<value>org.amm.ams.domain.Categories</value>
+				<value>org.amm.ams.domain.CategoriesDef</value>
 				<value>org.amm.ams.domain.Comments</value>
+				<value>org.amm.ams.domain.Languages</value>
 				<value>org.amm.ams.domain.Roles</value>
 				<value>org.amm.ams.domain.Tags</value>
 				<value>org.amm.ams.domain.Users</value>
-				
-				<value>org.amm.ams.domain.Bookmarks</value>
 				<value>org.amm.ams.domain.UserGroups</value>
-				<value>org.amm.ams.domain.Categories</value>
 			</list>
 		</property>
 	</bean>
-
+	<!-- END Hibernate session factory -->
+	
 </beans>
