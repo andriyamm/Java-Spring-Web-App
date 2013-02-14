@@ -5,11 +5,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -46,8 +49,31 @@ public class Users implements Serializable, Identifiable {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	private Set<Articles> articles = new HashSet<Articles>();
 
-	public Users() {
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "Users_Bookmarks", joinColumns = { @JoinColumn(name = "users_id") }, inverseJoinColumns = { @JoinColumn(name = "bookmarks_id") })
+	private Set<Bookmarks> bookmarks = new HashSet<Bookmarks>();
 
+	public Users() {
+	}
+
+	public Users(Long id, String firstName, String lastName, String email,
+			String profession, String password, Date lastLogin,
+			Date registrationDate, String status, Roles role,
+			Set<UserGroups> userGroups, Set<Articles> articles,
+			Set<Bookmarks> bookmarks) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.profession = profession;
+		this.password = password;
+		this.lastLogin = lastLogin;
+		this.registrationDate = registrationDate;
+		this.status = status;
+		this.role = role;
+		this.userGroups = userGroups;
+		this.articles = articles;
+		this.bookmarks = bookmarks;
 	}
 
 	public Long getId() {
@@ -146,13 +172,21 @@ public class Users implements Serializable, Identifiable {
 		this.status = status;
 	}
 
+	public Set<Bookmarks> getBookmarks() {
+		return bookmarks;
+	}
+
+	public void setBookmarks(Set<Bookmarks> bookmarks) {
+		this.bookmarks = bookmarks;
+	}
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(firstName)
 				.append(lastName).append(email).append(profession)
 				.append(password).append(lastLogin).append(registrationDate)
 				.append(status).append(role).append(userGroups)
-				.append(articles).toHashCode();
+				.append(articles).append(bookmarks).toHashCode();
 	}
 
 	@Override
@@ -175,7 +209,8 @@ public class Users implements Serializable, Identifiable {
 				.append(lastLogin, rhs.lastLogin)
 				.append(registrationDate, rhs.registrationDate)
 				.append(status, rhs.status).append(role, rhs.role)
-				.append(userGroups, rhs.userGroups).isEquals();
+				.append(userGroups, rhs.userGroups)
+				.append(bookmarks, rhs.bookmarks).isEquals();
 	}
 
 	@Override
@@ -184,6 +219,7 @@ public class Users implements Serializable, Identifiable {
 				.append("firstName", firstName).append("lastName", lastName)
 				.append("email", email).append("lastLogin", lastLogin)
 				.append("registrationDate", registrationDate)
-				.append("status", status).append("role", role).toString();
+				.append("status", status).append("role", role)
+				.append("bookmarks", bookmarks).toString();
 	}
 }

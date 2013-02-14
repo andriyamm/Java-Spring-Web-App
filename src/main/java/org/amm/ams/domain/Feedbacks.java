@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 public class Feedbacks implements Serializable, Identifiable {
 
@@ -15,14 +19,15 @@ public class Feedbacks implements Serializable, Identifiable {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private String text;
-	
+
 	@ManyToOne
 	private Articles article;
 
-	public Feedbacks() {}
-	
+	public Feedbacks() {
+	}
+
 	public Feedbacks(Long id, String text, Articles article) {
 		this.id = id;
 		this.text = text;
@@ -55,41 +60,31 @@ public class Feedbacks implements Serializable, Identifiable {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((article == null) ? 0 : article.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((text == null) ? 0 : text.hashCode());
-		return result;
+		return new HashCodeBuilder(17, 37).append(id).append(text)
+				.append(article).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
 			return true;
-		if (obj == null)
+		}
+		if (obj.getClass() != getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Feedbacks other = (Feedbacks) obj;
-		if (article == null) {
-			if (other.article != null)
-				return false;
-		} else if (!article.equals(other.article))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (text == null) {
-			if (other.text != null)
-				return false;
-		} else if (!text.equals(other.text))
-			return false;
-		return true;
+		}
+
+		Feedbacks rhs = (Feedbacks) obj;
+		return new EqualsBuilder().append(id, rhs.id).append(text, rhs.text)
+				.append(article, rhs.article).isEquals();
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("id", id).append("text", text)
+				.append("article", article).toString();
+	}
+
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -46,14 +47,16 @@ public class Articles implements Serializable, Identifiable {
 	@JoinTable(name = "Articles_Categories", joinColumns = { @JoinColumn(name = "articles_id") }, inverseJoinColumns = { @JoinColumn(name = "categories_id") })
 	private Set<Categories> categories = new HashSet<Categories>();
 
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "bookmarks")
+	private Set<Bookmarks> bookmarks = new HashSet<Bookmarks>();
+
 	public Articles() {
 
 	}
 
 	public Articles(Long id, String title, String text, Boolean is_tmp,
 			Date creationDate, Date publishDate, Set<Users> users,
-			Set<Tags> tags, Set<Categories> categories) {
-		super();
+			Set<Tags> tags, Set<Categories> categories, Set<Bookmarks> bookmarks) {
 		this.id = id;
 		this.title = title;
 		this.text = text;
@@ -63,6 +66,7 @@ public class Articles implements Serializable, Identifiable {
 		this.users = users;
 		this.tags = tags;
 		this.categories = categories;
+		this.bookmarks = bookmarks;
 	}
 
 	public Long getId() {
@@ -113,10 +117,6 @@ public class Articles implements Serializable, Identifiable {
 		this.tags = tags;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Set<Categories> getCategories() {
 		return categories;
 	}
@@ -141,12 +141,20 @@ public class Articles implements Serializable, Identifiable {
 		this.publishDate = publishDate;
 	}
 
+	public Set<Bookmarks> getBookmarks() {
+		return bookmarks;
+	}
+
+	public void setBookmarks(Set<Bookmarks> bookmarks) {
+		this.bookmarks = bookmarks;
+	}
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(title)
 				.append(text).append(is_tmp).append(users).append(tags)
 				.append(categories).append(creationDate).append(publishDate)
-				.toHashCode();
+				.append(bookmarks).toHashCode();
 	}
 
 	@Override
@@ -167,7 +175,7 @@ public class Articles implements Serializable, Identifiable {
 				.append(users, rhs.users).append(tags, rhs.tags)
 				.append(categories, rhs.categories)
 				.append(creationDate, rhs.creationDate)
-				.append(publishDate, rhs.publishDate).isEquals();
+				.append(publishDate, rhs.publishDate).append(bookmarks, rhs.bookmarks).isEquals();
 	}
 
 	@Override
@@ -177,6 +185,6 @@ public class Articles implements Serializable, Identifiable {
 				.append("is_tmp", is_tmp).append("users", users)
 				.append("tags", tags).append("categories", categories)
 				.append("creationDate", creationDate)
-				.append("publishDate", publishDate).toString();
+				.append("publishDate", publishDate).append("bookmarks", bookmarks).toString();
 	}
 }

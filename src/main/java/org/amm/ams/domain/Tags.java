@@ -11,6 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 public class Tags implements Serializable, Identifiable {
 
@@ -18,16 +22,16 @@ public class Tags implements Serializable, Identifiable {
 
 	@Id
 	@GeneratedValue
-	@Column(name="tags_id")
+	@Column(name = "tags_id")
 	private Long id;
-	
+
 	private String tags;
-	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="tags")
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
 	private Set<Articles> articles = new HashSet<Articles>();
 
 	public Tags() {
-	
+
 	}
 
 	public Tags(Long tags_id, String tags, Set<Articles> articles) {
@@ -63,43 +67,31 @@ public class Tags implements Serializable, Identifiable {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((articles == null) ? 0 : articles.hashCode());
-		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+		return new HashCodeBuilder(17, 37).append(id).append(tags)
+				.append(articles).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
 			return true;
-		if (obj == null)
+		}
+		if (obj.getClass() != getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Tags other = (Tags) obj;
-		if (articles == null) {
-			if (other.articles != null)
-				return false;
-		} else if (!articles.equals(other.articles))
-			return false;
-		if (tags == null) {
-			if (other.tags != null)
-				return false;
-		} else if (!tags.equals(other.tags))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+		}
+
+		Tags rhs = (Tags) obj;
+		return new EqualsBuilder().append(id, rhs.id).append(tags, rhs.tags)
+				.append(articles, rhs.articles).isEquals();
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("id", id).append("tags", tags)
+				.append("articles", articles).toString();
+	}
 
 }

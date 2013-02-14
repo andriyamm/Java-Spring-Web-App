@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 public class UserGroups {
 
@@ -57,5 +61,34 @@ public class UserGroups {
 
 	public void setUsers(Set<Users> users) {
 		this.users = users;
+	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(17, 37).append(id).append(name)
+				.append(users).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
+			return true;
+		}
+		if (obj.getClass() != getClass()) {
+			return false;
+		}
+
+		UserGroups rhs = (UserGroups) obj;
+		return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name)
+				.append(users, rhs.users).isEquals();
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("id", id).append("name", name)
+				.append("users", users).toString();
 	}
 }

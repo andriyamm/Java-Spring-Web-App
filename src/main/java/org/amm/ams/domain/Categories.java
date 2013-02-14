@@ -11,19 +11,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 public class Categories implements Serializable, Identifiable {
-	
+
 	private static final long serialVersionUID = -3582413995673329122L;
 
 	@Id
 	@GeneratedValue
-	@Column(name="tags_id")
+	@Column(name = "tags_id")
 	private Long id;
-	
+
 	private String name;
-	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="categories")
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")
 	private Set<Articles> articles = new HashSet<Articles>();
 
 	public Categories() {
@@ -61,40 +65,31 @@ public class Categories implements Serializable, Identifiable {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((articles == null) ? 0 : articles.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+		return new HashCodeBuilder(17, 37).append(id).append(name)
+				.append(articles).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (obj == null) {
+			return false;
+		}
+		if (obj == this) {
 			return true;
-		if (obj == null)
+		}
+		if (obj.getClass() != getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Categories other = (Categories) obj;
-		if (articles == null) {
-			if (other.articles != null)
-				return false;
-		} else if (!articles.equals(other.articles))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+		}
+
+		Categories rhs = (Categories) obj;
+		return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name)
+				.append(articles, rhs.articles).isEquals();
 	}
-	
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("id", id).append("name", name)
+				.append("articles", articles).toString();
+	}
+
 }
