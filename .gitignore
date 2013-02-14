@@ -4,3 +4,24 @@
 *.jar
 *.war
 *.ear
+
+# Directories #
+build/**
+bin/**
+lib/**
+target/**
+WebContent/WEB-INF/classes/**
+
+# Eclipse Project Files and directories #
+.settings/**
+.project
+.classpath
+
+# other temporary files
+*.kate-swp
+*.swp
+*~
+
+# properties files
+jdbc.properties
+build.properties
