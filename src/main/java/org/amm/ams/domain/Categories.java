@@ -25,17 +25,14 @@ public class Categories implements Serializable, Identifiable {
 	@Column(name = "tags_id")
 	private Long id;
 
-	private String name;
-
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")
 	private Set<Articles> articles = new HashSet<Articles>();
 
 	protected Categories() {
 	}
 
-	public Categories(Long id, String name, Set<Articles> articles) {
+	public Categories(Long id, Set<Articles> articles) {
 		this.id = id;
-		this.name = name;
 		this.articles = articles;
 	}
 
@@ -45,14 +42,6 @@ public class Categories implements Serializable, Identifiable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Set<Articles> getArticles() {
@@ -65,8 +54,8 @@ public class Categories implements Serializable, Identifiable {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(id).append(name)
-				.append(articles).toHashCode();
+		return new HashCodeBuilder(17, 37).append(id).append(articles)
+				.toHashCode();
 	}
 
 	@Override
@@ -82,13 +71,13 @@ public class Categories implements Serializable, Identifiable {
 		}
 
 		Categories rhs = (Categories) obj;
-		return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name)
+		return new EqualsBuilder().append(id, rhs.id)
 				.append(articles, rhs.articles).isEquals();
 	}
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("id", id).append("name", name)
+		return new ToStringBuilder(this).append("id", id)
 				.append("articles", articles).toString();
 	}
 

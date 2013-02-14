@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
-public class Feedbacks implements Serializable, Identifiable {
+public class Comments implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -5913343948444253930L;
 
@@ -25,10 +25,10 @@ public class Feedbacks implements Serializable, Identifiable {
 	@ManyToOne
 	private Articles article;
 
-	protected Feedbacks() {
+	protected Comments() {
 	}
 
-	public Feedbacks(Long id, String text, Articles article) {
+	public Comments(Long id, String text, Articles article) {
 		this.id = id;
 		this.text = text;
 		this.article = article;
@@ -76,7 +76,7 @@ public class Feedbacks implements Serializable, Identifiable {
 			return false;
 		}
 
-		Feedbacks rhs = (Feedbacks) obj;
+		Comments rhs = (Comments) obj;
 		return new EqualsBuilder().append(id, rhs.id).append(text, rhs.text)
 				.append(article, rhs.article).isEquals();
 	}

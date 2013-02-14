@@ -25,6 +25,7 @@ public class Bookmarks {
 	@Column(name = "bookmarks_id")
 	private Long id;
 
+	@Column(name = "name")
 	private String name;
 
 	@ManyToMany(cascade = { CascadeType.ALL })

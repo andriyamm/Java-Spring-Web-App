@@ -81,7 +81,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>org.amm.ams.domain.Articles</value>
-				<value>org.amm.ams.domain.Feedbacks</value>
+				<value>org.amm.ams.domain.Comments</value>
 				<value>org.amm.ams.domain.Roles</value>
 				<value>org.amm.ams.domain.Tags</value>
 				<value>org.amm.ams.domain.Users</value>

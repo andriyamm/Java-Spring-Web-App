@@ -29,8 +29,6 @@ public class Articles implements Serializable, Identifiable {
 	@Column(name = "articles_id")
 	private Long id;
 
-	private String title;
-	private String text;
 	private Boolean is_tmp;
 	private Date creationDate;
 	private Date publishDate;
@@ -53,12 +51,11 @@ public class Articles implements Serializable, Identifiable {
 	protected Articles() {
 	}
 
-	public Articles(Long id, String title, String text, Boolean is_tmp,
-			Date creationDate, Date publishDate, Set<Users> users,
-			Set<Tags> tags, Set<Categories> categories, Set<Bookmarks> bookmarks) {
+	public Articles(Long id, Boolean is_tmp, Date creationDate,
+			Date publishDate, Set<Users> users, Set<Tags> tags,
+			Set<Categories> categories, Set<Bookmarks> bookmarks) {
+		super();
 		this.id = id;
-		this.title = title;
-		this.text = text;
 		this.is_tmp = is_tmp;
 		this.creationDate = creationDate;
 		this.publishDate = publishDate;
@@ -74,22 +71,6 @@ public class Articles implements Serializable, Identifiable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
 	}
 
 	public Boolean getIs_tmp() {
@@ -150,10 +131,10 @@ public class Articles implements Serializable, Identifiable {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(id).append(title)
-				.append(text).append(is_tmp).append(users).append(tags)
-				.append(categories).append(creationDate).append(publishDate)
-				.append(bookmarks).toHashCode();
+		return new HashCodeBuilder(17, 37).append(id).append(is_tmp)
+				.append(users).append(tags).append(categories)
+				.append(creationDate).append(publishDate).append(bookmarks)
+				.toHashCode();
 	}
 
 	@Override
@@ -169,21 +150,21 @@ public class Articles implements Serializable, Identifiable {
 		}
 
 		Articles rhs = (Articles) obj;
-		return new EqualsBuilder().append(id, rhs.id).append(title, rhs.title)
-				.append(text, rhs.text).append(is_tmp, rhs.is_tmp)
-				.append(users, rhs.users).append(tags, rhs.tags)
-				.append(categories, rhs.categories)
+		return new EqualsBuilder().append(id, rhs.id)
+				.append(is_tmp, rhs.is_tmp).append(users, rhs.users)
+				.append(tags, rhs.tags).append(categories, rhs.categories)
 				.append(creationDate, rhs.creationDate)
-				.append(publishDate, rhs.publishDate).append(bookmarks, rhs.bookmarks).isEquals();
+				.append(publishDate, rhs.publishDate)
+				.append(bookmarks, rhs.bookmarks).isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id)
-				.append("title", title).append("text", text)
 				.append("is_tmp", is_tmp).append("users", users)
 				.append("tags", tags).append("categories", categories)
 				.append("creationDate", creationDate)
-				.append("publishDate", publishDate).append("bookmarks", bookmarks).toString();
+				.append("publishDate", publishDate)
+				.append("bookmarks", bookmarks).toString();
 	}
 }
