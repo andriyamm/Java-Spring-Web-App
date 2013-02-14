@@ -21,7 +21,7 @@ public class Roles implements Serializable, Identifiable {
 
 	private String role;
 
-	public Roles() {
+	protected Roles() {
 
 	}
 

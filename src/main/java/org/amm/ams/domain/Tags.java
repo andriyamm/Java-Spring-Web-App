@@ -30,12 +30,11 @@ public class Tags implements Serializable, Identifiable {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
 	private Set<Articles> articles = new HashSet<Articles>();
 
-	public Tags() {
+	protected Tags() {
 
 	}
 
 	public Tags(Long tags_id, String tags, Set<Articles> articles) {
-		super();
 		this.id = tags_id;
 		this.tags = tags;
 		this.articles = articles;

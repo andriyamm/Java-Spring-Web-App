@@ -30,7 +30,7 @@ public class UserGroups {
 	@JoinTable(name = "UserGroups_Users", joinColumns = { @JoinColumn(name = "userGroups_id") }, inverseJoinColumns = { @JoinColumn(name = "users_id") })
 	private Set<Users> users = new HashSet<Users>();
 
-	public UserGroups() {
+	protected UserGroups() {
 	}
 
 	public UserGroups(Long id, String name, Set<Users> users) {

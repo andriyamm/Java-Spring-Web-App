@@ -34,7 +34,7 @@ public class Bookmarks {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	private Set<Users> users = new HashSet<Users>();
 
-	public Bookmarks() {
+	protected Bookmarks() {
 	}
 
 	public Bookmarks(Long id, String name, Set<Articles> articles,

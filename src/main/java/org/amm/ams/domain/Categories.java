@@ -30,7 +30,7 @@ public class Categories implements Serializable, Identifiable {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")
 	private Set<Articles> articles = new HashSet<Articles>();
 
-	public Categories() {
+	protected Categories() {
 	}
 
 	public Categories(Long id, String name, Set<Articles> articles) {

@@ -53,7 +53,7 @@ public class Users implements Serializable, Identifiable {
 	@JoinTable(name = "Users_Bookmarks", joinColumns = { @JoinColumn(name = "users_id") }, inverseJoinColumns = { @JoinColumn(name = "bookmarks_id") })
 	private Set<Bookmarks> bookmarks = new HashSet<Bookmarks>();
 
-	public Users() {
+	protected Users() {
 	}
 
 	public Users(Long id, String firstName, String lastName, String email,

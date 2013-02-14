@@ -50,8 +50,7 @@ public class Articles implements Serializable, Identifiable {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "bookmarks")
 	private Set<Bookmarks> bookmarks = new HashSet<Bookmarks>();
 
-	public Articles() {
-
+	protected Articles() {
 	}
 
 	public Articles(Long id, String title, String text, Boolean is_tmp,

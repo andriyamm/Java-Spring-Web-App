@@ -25,7 +25,7 @@ public class Feedbacks implements Serializable, Identifiable {
 	@ManyToOne
 	private Articles article;
 
-	public Feedbacks() {
+	protected Feedbacks() {
 	}
 
 	public Feedbacks(Long id, String text, Articles article) {
