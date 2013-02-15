@@ -20,11 +20,13 @@
      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
      
      
-     <!-- the packages to be scanned -->
+	<mvc:annotation-driven />
+	 
+    <!-- the packages to be scanned -->
 	<context:component-scan base-package="org.amm.ams" />
 	
-<!-- {begin} bean for tiles -->
-
+    <!-- {begin} bean for tiles -->
+	
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
 		p:definitions="/WEB-INF/tiles-defs.xml" />
@@ -43,7 +45,7 @@
 		<property name="order" value="1"></property>
 	</bean>
 	
-	  <mvc:resources mapping="/resources/**" location="/resources/" /> 
+	<mvc:resources mapping="/resources/**" location="/resources/" /> 
 
 	<!-- {end} beans for tiles -->
 	

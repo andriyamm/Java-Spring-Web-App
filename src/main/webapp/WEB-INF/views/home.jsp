@@ -5,7 +5,7 @@
 </head>
 <body>
 
-	 	<jsp:forward page="/login.htm" />
+	 <p>HOME</p>
 	
 
 	
