@@ -11,4 +11,9 @@ public class TestController {
 	public String test(){
 		return "test";
 	}
+	
+	@RequestMapping("ho")
+	public String test1(){
+		return "list";
+	}
 }
