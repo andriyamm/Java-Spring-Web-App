@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
-                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
-	
+
 	<session-factory>
-	
-		<property name="dialect">org.amm.ams.UnicodeSQLServerDialect</property>
+
+		<!-- <property name="dialect">org.amm.ams.UnicodeSQLServerDialect</property> -->
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.show_sql">true</property>
@@ -25,7 +26,7 @@
 		<mapping class="org.amm.ams.domain.Tags" />
 		<mapping class="org.amm.ams.domain.Users" />
 		<mapping class="org.amm.ams.domain.UserGroups" />
-		
+
 	</session-factory>
-	
+
 </hibernate-configuration>

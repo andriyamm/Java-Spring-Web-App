@@ -45,7 +45,7 @@ public class Articles implements Serializable, Identifiable {
 	@JoinTable(name = "Articles_Categories", joinColumns = { @JoinColumn(name = "articles_id") }, inverseJoinColumns = { @JoinColumn(name = "categories_id") })
 	private Set<Categories> categories = new HashSet<Categories>();
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "bookmarks")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "articles")
 	private Set<Bookmarks> bookmarks = new HashSet<Bookmarks>();
 
 	protected Articles() {

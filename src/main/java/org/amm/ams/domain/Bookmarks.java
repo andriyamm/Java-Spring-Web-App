@@ -32,7 +32,7 @@ public class Bookmarks {
 	@JoinTable(name = "Bookmarks_Articles", joinColumns = { @JoinColumn(name = "bookmarks_id") }, inverseJoinColumns = { @JoinColumn(name = "articles_id") })
 	private Set<Articles> articles = new HashSet<Articles>();
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "bookmarks")
 	private Set<Users> users = new HashSet<Users>();
 
 	protected Bookmarks() {

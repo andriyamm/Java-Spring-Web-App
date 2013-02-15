@@ -11,28 +11,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class HibernateDao<T extends Identifiable> implements Dao<T> {
 
-	protected final Class<T> persistentClass;
+	//protected final Class<T> persistentClass;
 	
-	@Autowired
-	protected SessionFactory sessionFactory;
+	//@Autowired
+	//protected SessionFactory sessionFactory;
 
-	public HibernateDao(final Class<T> persistentClass) {
-		this.persistentClass = persistentClass;
-	}
-
-	public HibernateDao(final Class<T> persistentClass,
-			final SessionFactory sessionFactory) {
-		this.persistentClass = persistentClass;
-		this.sessionFactory = sessionFactory;
-	}
-
-	public void setSessionFactory(final SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
-	public Session getCurrentSession() {
-		return this.sessionFactory.getCurrentSession();
-	}
+//	public HibernateDao(final Class<T> persistentClass) {
+//		this.persistentClass = persistentClass;
+//	}
+//
+//	public HibernateDao(final Class<T> persistentClass,
+//			final SessionFactory sessionFactory) {
+//		this.persistentClass = persistentClass;
+//		this.sessionFactory = sessionFactory;
+//	}
+//
+//	public void setSessionFactory(final SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
+//
+//	public Session getCurrentSession() {
+//		return this.sessionFactory.getCurrentSession();
+//	}
 
 	@Override
 	public Long getRowCount() {

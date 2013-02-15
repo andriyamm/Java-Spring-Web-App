@@ -6,12 +6,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UsersDaoImpl extends HibernateDao<Users>{
 
-	public UsersDaoImpl(Class<Users> persistentClass) {
-		super(persistentClass);
-	}
-	
-	public UsersDaoImpl() {
-		super(Users.class);
-	}
+//	public UsersDaoImpl(Class<Users> persistentClass) {
+//		super(persistentClass);
+//	}
+//	
+//	public UsersDaoImpl() {
+//		super(Users.class);
+//	}
 
 }

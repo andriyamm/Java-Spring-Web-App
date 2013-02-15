@@ -23,7 +23,6 @@ public class ArticlesDef implements Serializable {
 	private Long id;
 
 	@ManyToOne
-	@Column(name = "articles_id")
 	private Articles article;
 
 	@Column(name = "title")
@@ -33,7 +32,6 @@ public class ArticlesDef implements Serializable {
 	private String body;
 
 	@ManyToOne
-	@Column(name = "lang_id")
 	private Languages lang;
 
 	public ArticlesDef() {

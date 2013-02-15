@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<!-- main layuot -->
+
+	<definition name="baseLayout" template="/WEB-INF/tiles/baseLayout.jsp">
+		<put-attribute name="title" value="Order Management System" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<!-- login layuot -->
+	
+	<definition name="loginLayout" template="/WEB-INF/tiles/loginLayout.jsp">
+		<put-attribute name="title" value="Order Management System" />
+		<put-attribute name="body" value="/WEB-INF/tiles/body.jsp" />
+	</definition>
+	
+	<definition name="LoginPage" extends="loginLayout">
+		<put-attribute name="title" value="Login Page" />
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	</definition>
+	
+	<!-- pages -->
+
+	<definition name="createUser" extends="baseLayout">
+		<put-attribute name="title" value="Create User" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Administration" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/create.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="listUser" extends="baseLayout">
+		<put-attribute name="title" value="All Users" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Administration" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/main.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="listOrder" extends="baseLayout">
+		<put-attribute name="title" value="All Orders" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Ordering" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/customer/list.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="listMerchOrder" extends="baseLayout">
+		<put-attribute name="title" value="All Orders" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Ordering" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/merch/main.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="createOrder" extends="baseLayout">
+		<put-attribute name="title" value="Create Order" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Ordering" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/customer/create.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="customerViewOrder" extends="baseLayout">
+		<put-attribute name="title" value="Create Order" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Ordering" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/customer/view.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="viewOrder" extends="baseLayout">
+		<put-attribute name="title" value="View Order" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Ordering" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/merch/view.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="listProduct" extends="baseLayout">
+		<put-attribute name="title" value="All Products" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Products" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/merch/list.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="createProduct" extends="baseLayout">
+		<put-attribute name="title" value="Create Products" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Products" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/merch/addedit.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="searchProduct" extends="baseLayout">
+		<put-attribute name="title" value="View Product" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Product" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/customer/searchitem.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="assigneMerch" extends="baseLayout">
+		<put-attribute name="title" value="Assigne Merch" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Administration" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/super/super.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="superListOrder" extends="baseLayout">
+		<put-attribute name="title" value="View Product" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Orders" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/super/list.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="superListOrderEdit" extends="baseLayout">
+		<put-attribute name="title" value="View Product" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Edit Orders" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/super/edit.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="errorPage" extends="baseLayout">
+		<put-attribute name="title" value="Error" />
+		<put-attribute name="body" value="/WEB-INF/views/error.jsp" />
+	</definition>
+
+
+
+	<definition name="welcomeTiles" extends="baseLayout">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Welcome" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/welcome.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+	
+	<definition name="listProducts" extends="baseLayout">
+		<put-attribute name="title" value="Products" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Supervisor" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/super/products.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+<definition name="addProduct" extends="baseLayout">
+		<put-attribute name="title" value="Products" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Supervisor" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/super/addproduct.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	<definition name="editProduct" extends="baseLayout">
+		<put-attribute name="title" value="Products" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Supervisor" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/super/editproduct.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+
+	<definition name="cvv2Info" extends="baseLayout">
+		<put-attribute name="title" value="cvv2 information" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Welcome" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/customer/cvv2_info.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="userInfo" extends="baseLayout">
+		<put-attribute name="title" value="User information" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="tab" value="Welcome" />
+		<put-attribute name="user_info" value="/WEB-INF/tiles/user_info.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/user_info.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+</tiles-definitions>

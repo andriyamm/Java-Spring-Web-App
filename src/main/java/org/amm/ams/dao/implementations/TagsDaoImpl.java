@@ -7,12 +7,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TagsDaoImpl extends HibernateDao<Tags> implements TagsDao {
 
-	public TagsDaoImpl(Class<Tags> persistentClass) {
-		super(persistentClass);
-	}
-
-	public TagsDaoImpl() {
-		super(Tags.class);
-	}
+//	public TagsDaoImpl(Class<Tags> persistentClass) {
+//		super(persistentClass);
+//	}
+//
+//	public TagsDaoImpl() {
+//		super(Tags.class);
+//	}
 	
 }

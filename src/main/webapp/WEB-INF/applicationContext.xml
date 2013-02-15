@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation= " http://www.springframework.org/schema/aop
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation=" http://www.springframework.org/schema/aop
 	 http://www.springframework.org/schema/aop/spring-aop-2.0.xsd 
 	 http://www.springframework.org/schema/tx 
 	 http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
@@ -19,24 +15,7 @@
      http://www.springframework.org/schema/mvc
      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<tx:annotation-driven />
-	
-	<mvc:annotation-driven />
- 
- 
-	<context:annotation-config />
-
-	<!-- the packages to be scanned -->
-	<context:component-scan base-package="org.amm.ams" />
-
-	<!-- BEGIN Hibernate session factory -->
-	
+	<!-- properties file for jdbc database access details / -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
@@ -44,56 +23,39 @@
 		</property>
 	</bean>
 
+	<tx:annotation-driven />
+
+	<mvc:annotation-driven />
+
+	<context:annotation-config />
+
+	<!-- the packages to be scanned -->
+	<context:component-scan base-package="org.amm.ams" />
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="hibernatePersistenceUnit" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- The JpaTransactionManager is responsible for creating EntityManagers 
+		opening transactions and binding them to the current thread context. -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName">
-			<value>${jdbc.driverClassName}</value>
-		</property>
-		<property name="url">
-			<value>${jdbc.url}</value>
-		</property>
-		<property name="username">
-			<value>${jdbc.username}</value>
-		</property>
-		<property name="password">
-			<value>${jdbc.password}</value>
-		</property>
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	<!-- By adding a single bean definition the Spring container will act as 
+		a JPA container and inject an EnitityManager from your EntityManagerFactory. -->
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
-		<property name="dataSource">
-			<ref bean="dataSource" />
-		</property>
-
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="current_session_context_class">thread</prop>
-				<prop key="hibernate.connection.autocommit">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
-				<prop key="hibernate.connection.pool_size">10</prop>
-			</props>
-		</property>
-
-		<property name="annotatedClasses">
-			<list>
-				<value>org.amm.ams.domain.Articles</value>
-				<value>org.amm.ams.domain.ArticlesDef</value>
-				<value>org.amm.ams.domain.Bookmarks</value>
-				<value>org.amm.ams.domain.Categories</value>
-				<value>org.amm.ams.domain.CategoriesDef</value>
-				<value>org.amm.ams.domain.Comments</value>
-				<value>org.amm.ams.domain.Languages</value>
-				<value>org.amm.ams.domain.Roles</value>
-				<value>org.amm.ams.domain.Tags</value>
-				<value>org.amm.ams.domain.Users</value>
-				<value>org.amm.ams.domain.UserGroups</value>
-			</list>
-		</property>
-	</bean>
-	<!-- END Hibernate session factory -->
-	
 </beans>
