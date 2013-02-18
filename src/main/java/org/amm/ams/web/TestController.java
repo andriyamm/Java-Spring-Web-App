@@ -14,6 +14,6 @@ public class TestController {
 	
 	@RequestMapping("ho")
 	public String test1(){
-		return "list";
+		return "list1";
 	}
 }
