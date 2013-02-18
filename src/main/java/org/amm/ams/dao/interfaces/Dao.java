@@ -1,6 +1,8 @@
 package org.amm.ams.dao.interfaces;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Basic data access object, for all entites.
@@ -18,16 +20,6 @@ public interface Dao<T> {
 	 * @return list of all rows of the appropriate table in the DB.
 	 */
 	List<T> findAll();
-	
-	/**
-	 * if entity is seen first time it is inserted into the db, updated
-	 * otherwise.
-	 * 
-	 * @param entity
-	 *            entity to proceed.
-	 * @return the updated value of entity, already with ID.
-	 */
-	T insertOrUpdate(final T entity);
 
 	/**
 	 * Removes entity from db.
@@ -36,7 +28,7 @@ public interface Dao<T> {
 	 *            entity to delete.
 	 * @return TODO
 	 */
-	Long delete(final T entity);
+	void delete(final T entity);
 	
 
 	/**
@@ -46,6 +38,20 @@ public interface Dao<T> {
 	 *            id of the entity to be deleted.
 	 * @return TODO
 	 */
-	Long delete(final Long id);
+	void delete(final Long id);
+
+	/**
+	 * TODO
+	 * @param id
+	 * @return
+	 */
+	T findById(Serializable id);
+
+	List<T> findByNamedQuery(String name, Object[] params);
+
+	List<T> findByNamedQueryAndNamedParams(String name,
+			Map<String, ? extends Object> params);
+
+	T update(T entity);
 	
 }

@@ -5,7 +5,7 @@ import org.amm.ams.domain.Tags;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TagsDaoImpl extends HibernateDao<Tags> implements TagsDao {
+public class TagsDaoImpl extends HibernateJpaDao<Tags> implements TagsDao {
 
 //	public TagsDaoImpl(Class<Tags> persistentClass) {
 //		super(persistentClass);

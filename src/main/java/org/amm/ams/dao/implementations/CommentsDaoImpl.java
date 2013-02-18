@@ -4,7 +4,7 @@ import org.amm.ams.domain.Comments;
 import org.springframework.stereotype.Repository;
 
 //@Repository
-public class CommentsDaoImpl extends HibernateDao<Comments> {
+public class CommentsDaoImpl extends HibernateJpaDao<Comments> {
 
 //	public CommentsDaoImpl(Class<Comments> persistentClass) {
 //		super(persistentClass);
