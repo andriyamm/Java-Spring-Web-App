@@ -24,5 +24,11 @@
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 	</definition>
 
+	<definition name="createArticle" extends="baseLayout">
+		<put-attribute name="title" value="list" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/articles/create.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
 	
 </tiles-definitions>

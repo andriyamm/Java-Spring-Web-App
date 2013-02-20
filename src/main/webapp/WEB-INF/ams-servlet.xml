@@ -49,4 +49,24 @@
 
 	<!-- {end} beans for tiles -->
 	
+	<!-- {begin} beans for i18n -->
+
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			 <property name="paramName" value="lang"></property>
+		</bean>
+	</mvc:interceptors>
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" >
+		<property name="defaultLocale" value="en"/>
+	</bean>
+ 
+	 <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages/messages" />
+		<property name="cacheSeconds" value="0" />
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+	
+	<!-- {end} beans for i18n  -->
+	
 </beans>
