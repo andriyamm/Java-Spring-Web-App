@@ -47,11 +47,34 @@ public interface Dao<T> {
 	 */
 	T findById(Serializable id);
 
+	/**
+	 * 
+	 * @param name
+	 * @param params
+	 * @return
+	 */
 	List<T> findByNamedQuery(String name, Object[] params);
 
+	/**
+	 * 
+	 * @param name
+	 * @param params
+	 * @return
+	 */
 	List<T> findByNamedQueryAndNamedParams(String name,
 			Map<String, ? extends Object> params);
 
+	/**
+	 * 
+	 * @param entity
+	 * @return
+	 */
 	T update(T entity);
 	
+	/**
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	T create(T entity);
 }
