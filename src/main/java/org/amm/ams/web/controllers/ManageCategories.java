@@ -1,10 +1,11 @@
 package org.amm.ams.web.controllers;
 
+import static org.amm.ams.common.AmsConstants.Server.DOMAIN;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.amm.ams.dao.interfaces.CategoriesDao;
 import org.amm.ams.service.interfaces.CategoriesService;
 import org.amm.ams.web.commands.CategoryCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,12 @@ public class ManageCategories {
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createAddCategoryForm(Map<String, Object> params,
 			HttpSession session) {
-
+		
+		String temp = DOMAIN + "/category/create"; //TODO
+		
+		params.put("action", temp);
+		params.put("categories", categoriesService.findAll());
+		
 		return "createCategory";
 	}
 
@@ -35,13 +41,15 @@ public class ManageCategories {
 			BindingResult result, Map<String, Object> params,
 			HttpSession session) {
 
-		categoriesService.create();
+		//categoriesService.insert(entity);
 		return null;
 	}
 
 	@RequestMapping("list")
 	public String listCategory(Map<String, Object> params, HttpSession session) {
-
+		
+		params.put("categories", categoriesService.findAll());
+		
 		return "listCategory";
 	}
 

@@ -82,7 +82,8 @@ public class HibernateJpaDao<T extends Identifiable> implements Dao<T> {
 		return entityManager.merge(entity);
 	}
 
-	public T create(T entity) {
+	@Override
+	public T insert(T entity) {
 		this.entityManager.persist(entity);
 		return entity;
 	}

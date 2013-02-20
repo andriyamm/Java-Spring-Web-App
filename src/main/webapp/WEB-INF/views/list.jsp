@@ -9,4 +9,6 @@
 
 <p>list</p>
 
-
+<p>${ip }</p>
+<p>${userAgent }</p>
+<p>${serverName }</p>

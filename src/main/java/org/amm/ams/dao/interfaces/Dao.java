@@ -64,6 +64,7 @@ public interface Dao<T> {
 	List<T> findByNamedQueryAndNamedParams(String name,
 			Map<String, ? extends Object> params);
 
+	
 	/**
 	 * 
 	 * @param entity
@@ -76,5 +77,5 @@ public interface Dao<T> {
 	 * @param entity
 	 * @return
 	 */
-	T create(T entity);
+	T insert(T entity);
 }

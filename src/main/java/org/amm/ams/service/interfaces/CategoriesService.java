@@ -1,7 +1,8 @@
 package org.amm.ams.service.interfaces;
 
-public interface CategoriesService {
+import org.amm.ams.domain.Categories;
 
-	void create();
+public interface CategoriesService extends Service<Categories> {
+
 
 }
