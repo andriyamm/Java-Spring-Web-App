@@ -10,7 +10,7 @@
 		<table>
 			<tr>
 				<td><spring:message code="category.categoryname" /></td>
-					<td>
+				<td>
 					<p>
 					<form:input path="categoryName" type="text" id="categoryName" value="${article}" />	
 					</p>
@@ -20,11 +20,28 @@
 				</td>
 			</tr>
 			<tr>
-			<td></td>
-			<td>
-				<form:input path="createCategory" id="createCategory" type="submit" name="submit" class="submit" />
-			</td>
-		</tr>
+				<td><spring:message code="category.parent" /></td>
+					<td>
+					<p>
+					<form:select path="articleCategory">
+						<c:if test="${!empty categories}">
+							<c:forEach var="category" items="${categories}" varStatus="status">
+								<form:option value="${category.id }">${category.name }</form:option>
+							</c:forEach>
+						</c:if>
+					</form:select>
+					</p>
+					<p class="error" id="categoryErrors">
+						<form:errors path="categoryParent" cssClass="error" id="categoryParentErrors" />
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<form:input path="createCategory" id="createCategory" type="submit" name="submit" class="submit" />
+				</td>
+			</tr>
 		</table>
 	</form:form>
 	
