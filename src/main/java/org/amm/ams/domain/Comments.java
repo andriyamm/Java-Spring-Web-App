@@ -2,6 +2,7 @@ package org.amm.ams.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,8 +19,13 @@ public class Comments implements Serializable, Identifiable {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "id")
 	private Long id;
 
+	@Column(name = "parent")
+	private Long parent;
+	
+	@Column(name = "text")
 	private String text;
 
 	@ManyToOne
@@ -28,10 +34,19 @@ public class Comments implements Serializable, Identifiable {
 	protected Comments() {
 	}
 
-	public Comments(Long id, String text, Articles article) {
+	public Comments(Long id, String text, Articles article, Long parent) {
 		this.id = id;
 		this.text = text;
 		this.article = article;
+		this.parent = parent;
+	}
+
+	public Long getParent() {
+		return parent;
+	}
+
+	public void setParent(Long parent) {
+		this.parent = parent;
 	}
 
 	public Long getId() {
@@ -61,7 +76,7 @@ public class Comments implements Serializable, Identifiable {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(text)
-				.append(article).toHashCode();
+				.append(article).append(parent).toHashCode();
 	}
 
 	@Override
@@ -78,13 +93,13 @@ public class Comments implements Serializable, Identifiable {
 
 		Comments rhs = (Comments) obj;
 		return new EqualsBuilder().append(id, rhs.id).append(text, rhs.text)
-				.append(article, rhs.article).isEquals();
+				.append(article, rhs.article).append(parent, rhs.parent).isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id).append("text", text)
-				.append("article", article).toString();
+				.append("article", article).append("parent", parent).toString();
 	}
 
 }
