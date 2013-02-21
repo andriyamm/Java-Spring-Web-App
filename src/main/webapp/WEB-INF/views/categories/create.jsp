@@ -6,7 +6,7 @@
 
 <div class="page">
 
-	<form:form method="post" action="${action}" >
+	<form:form method="post" action="${action}" modelAttribute="categoryCommand">
 		<table>
 			<tr>
 				<td><spring:message code="category.categoryname" /></td>

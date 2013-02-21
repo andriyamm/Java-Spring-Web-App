@@ -1,7 +1,5 @@
 package org.amm.ams.web.controllers;
 
-import static org.amm.ams.common.AmsConstants.Server.DOMAIN;
-
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -27,12 +25,12 @@ public class ManageCategories {
 	public String createAddCategoryForm(Map<String, Object> params,
 			HttpSession session) {
 		
-		String temp = DOMAIN + "/category/create"; //TODO
+		//String temp = DOMAIN + "/category/create"; //TODO
 		
-		params.put("action", temp);
+		params.put("action", "category/create");
 		params.put("categories", categoriesService.findAll());
 		
-		return "createCategory";
+		return "categories/create";
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
@@ -50,7 +48,7 @@ public class ManageCategories {
 		
 		params.put("categories", categoriesService.findAll());
 		
-		return "listCategory";
+		return "categories/list";
 	}
 
 }

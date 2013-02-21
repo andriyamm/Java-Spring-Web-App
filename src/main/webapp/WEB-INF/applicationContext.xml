@@ -27,8 +27,6 @@
 
 	<context:annotation-config />
 
-	
-	
 	<!-- the packages to be scanned -->
 	<context:component-scan base-package="org.amm.ams" />
 
