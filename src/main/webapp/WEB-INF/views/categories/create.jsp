@@ -6,7 +6,7 @@
 
 <div class="page">
 
-	<form:form method="post" action="${action}" modelAttribute="categoryCommand">
+	<form:form method="post" action="create" modelAttribute="categoryCommand">
 		<table>
 			<tr>
 				<td><spring:message code="category.categoryname" /></td>
@@ -21,9 +21,9 @@
 			</tr>
 			<tr>
 				<td><spring:message code="category.parent" /></td>
-					<td>
+				<td>
 					<p>
-					<form:select path="articleCategory">
+					<form:select path="parentCategory">
 						<c:if test="${!empty categories}">
 							<c:forEach var="category" items="${categories}" varStatus="status">
 								<form:option value="${category.id }">${category.name }</form:option>
@@ -32,14 +32,26 @@
 					</form:select>
 					</p>
 					<p class="error" id="categoryErrors">
-						<form:errors path="categoryParent" cssClass="error" id="categoryParentErrors" />
+						<form:errors path="parentCategory" cssClass="error" id="categoryParentErrors" />
 					</p>
+				</td>
+			</tr>
+			<tr>
+				<td><spring:message code="common.chooselanguage" /></td>
+				<td>
+					<form:select path="languagePrefix">
+						<c:if test="${!empty languages}">
+							<c:forEach var="lang" items="${languages}" varStatus="status">
+								<form:option value="${lang.id }">${lang.prefix }</form:option>
+							</c:forEach>
+						</c:if>
+					</form:select>
 				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
-					<form:input path="createCategory" id="createCategory" type="submit" name="submit" class="submit" />
+					<input  id="createCategory" type="submit" name="submit" class="submit" />
 				</td>
 			</tr>
 		</table>

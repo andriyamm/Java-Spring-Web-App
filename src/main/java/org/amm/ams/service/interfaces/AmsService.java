@@ -2,9 +2,8 @@ package org.amm.ams.service.interfaces;
 
 import java.util.List;
 
-import org.amm.ams.domain.Identifiable;
-
-public interface Service<T extends Identifiable> {
+//public interface Service<T extends Identifiable> {
+public interface AmsService<T> {
 
 	/**
 	 * @return count of all rows of the appropriate table in the DB.

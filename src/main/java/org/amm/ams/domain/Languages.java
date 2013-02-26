@@ -18,9 +18,11 @@ public class Languages {
 	private Long id;
 	
 	private String name;
+	
+	@Column(unique=true, nullable=false)
 	private String prefix;
 	
-	protected Languages() {
+	public Languages() {
 	}
 
 	public Languages(Long id, String name, String prefix) {

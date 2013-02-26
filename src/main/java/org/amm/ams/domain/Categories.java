@@ -22,7 +22,7 @@ public class Categories implements Serializable, Identifiable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "tags_id")
+	@Column(name = "categories_id")
 	private Long id;
 
 	@Column(name = "parent")
@@ -31,7 +31,7 @@ public class Categories implements Serializable, Identifiable {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")
 	private Set<Articles> articles = new HashSet<Articles>();
 
-	protected Categories() {
+	public Categories() {
 	}
 
 	public Categories(Long id, Set<Articles> articles, Long parent) {

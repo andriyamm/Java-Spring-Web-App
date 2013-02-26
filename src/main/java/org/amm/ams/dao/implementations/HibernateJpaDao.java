@@ -9,13 +9,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.amm.ams.dao.interfaces.Dao;
-import org.amm.ams.domain.Identifiable;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Required;
 
-public class HibernateJpaDao<T extends Identifiable> implements Dao<T> {
+//public class HibernateJpaDao<T extends Identifiable> implements Dao<T> {
+public class HibernateJpaDao<T> implements Dao<T> {
 
 	private final Class<T> persistentClass;
 	private EntityManager entityManager;

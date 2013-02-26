@@ -3,13 +3,12 @@ package org.amm.ams.service.implemantations;
 import java.util.List;
 
 import org.amm.ams.dao.interfaces.Dao;
-import org.amm.ams.domain.Identifiable;
-import org.amm.ams.service.interfaces.Service;
+import org.amm.ams.service.interfaces.AmsService;
 import org.springframework.transaction.annotation.Transactional;
 
 
-
-public abstract class ServiceImpl<T extends Identifiable> implements Service<T> {
+//public abstract class ServiceImpl<T extends Identifiable> implements Service<T> {
+public abstract class AmsServiceImpl<T> implements AmsService<T> {
 
 	/**
 	 * the getDao() of descendants
