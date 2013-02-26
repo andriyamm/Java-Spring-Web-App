@@ -9,6 +9,7 @@ import org.amm.ams.service.interfaces.CategoriesService;
 import org.amm.ams.web.commands.CategoryCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CategoriesServiceImpl extends AmsServiceImpl<Categories> implements CategoriesService {
@@ -24,6 +25,8 @@ public class CategoriesServiceImpl extends AmsServiceImpl<Categories> implements
 		return categoriesDao;
 	}
 	
+	@Transactional
+	@Override
 	public void createCategory(CategoryCommand categoryCommand){
 		
 		//TODO
