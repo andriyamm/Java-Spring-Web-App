@@ -28,7 +28,7 @@ public class CategoriesDef implements Serializable {
 	@ManyToOne
 	private Languages lang;
 
-	protected CategoriesDef() {
+	public CategoriesDef() {
 	}
 
 	public CategoriesDef(Long id, String name, Languages lang) {

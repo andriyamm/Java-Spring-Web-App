@@ -1,12 +1,15 @@
 package org.amm.ams.service.implemantations;
 
 import org.amm.ams.dao.interfaces.CategoriesDao;
+import org.amm.ams.dao.interfaces.CategoriesDefDao;
 import org.amm.ams.dao.interfaces.Dao;
 import org.amm.ams.dao.interfaces.LanguagesDao;
 import org.amm.ams.domain.Categories;
+import org.amm.ams.domain.CategoriesDef;
 import org.amm.ams.domain.Languages;
 import org.amm.ams.service.interfaces.CategoriesService;
 import org.amm.ams.web.commands.CategoryCommand;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +20,9 @@ public class CategoriesServiceImpl extends AmsServiceImpl<Categories> implements
 	@Autowired
 	private CategoriesDao categoriesDao;
 
+	@Autowired
+	private CategoriesDefDao categoriesDefDao;
+	
 	@Autowired
 	private LanguagesDao languagesDao;
 	
@@ -29,19 +35,21 @@ public class CategoriesServiceImpl extends AmsServiceImpl<Categories> implements
 	@Override
 	public void createCategory(CategoryCommand categoryCommand){
 		
-		//TODO
-		// 0. create categories
-		// 1. create categoriesdef
-		
 		Categories category = new Categories();
-		category.setParent(0l);
+		category.setParent(categoryCommand.getParentCategory());
 		categoriesDao.insert(category);
 		
-		Languages lang = new Languages();
-		lang.setName("qwerty");
-		lang.setPrefix("qw");
+		//Languages lang = languagesDao.findById(categoryCommand.getLanguageId());
 		
-		languagesDao.insert(lang);
+		Languages lang = new Languages();
+		lang.setId(categoryCommand.getLanguageId());
+		
+		CategoriesDef categoriesDef = new CategoriesDef();
+		categoriesDef.setName(categoryCommand.getCategoryName());
+		categoriesDef.setLang(lang);
+		
+		categoriesDefDao.insert(categoriesDef);
 		
 	}
+	
 }

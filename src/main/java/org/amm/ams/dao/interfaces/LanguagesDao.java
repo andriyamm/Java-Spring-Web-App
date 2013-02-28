@@ -4,4 +4,5 @@ import org.amm.ams.domain.Languages;
 
 public interface LanguagesDao extends Dao<Languages> {
 
+	Languages findByPrefix(String languagePrefix);
 }

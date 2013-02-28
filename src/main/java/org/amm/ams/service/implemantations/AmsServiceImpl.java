@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.amm.ams.dao.interfaces.Dao;
 import org.amm.ams.service.interfaces.AmsService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-//public abstract class ServiceImpl<T extends Identifiable> implements Service<T> {
+@Service
 public abstract class AmsServiceImpl<T> implements AmsService<T> {
 
 	/**

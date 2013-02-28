@@ -39,7 +39,7 @@
 			<tr>
 				<td><spring:message code="common.chooselanguage" /></td>
 				<td>
-					<form:select path="languagePrefix">
+					<form:select path="languageId">
 						<c:if test="${!empty languages}">
 							<c:forEach var="lang" items="${languages}" varStatus="status">
 								<form:option value="${lang.id }">${lang.prefix }</form:option>

@@ -14,5 +14,11 @@ public class LanguagesDaoImpl extends HibernateJpaDao<Languages> implements Lang
 	public LanguagesDaoImpl() {
 		super(Languages.class);
 	}
+
+	@Override
+	public Languages findByPrefix(String languagePrefix) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

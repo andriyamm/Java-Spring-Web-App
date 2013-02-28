@@ -5,26 +5,26 @@ public class CategoryCommand {
 
 	private String categoryName;
 	private Long parentCategory;
-	private String languagePrefix;
+	private Long languageId;
 
 	public CategoryCommand() {
 		super();
 	}
 
 	public CategoryCommand(String categoryName, Long parentCategory,
-			String languagePrefix) {
+			Long languageId) {
 		super();
 		this.categoryName = categoryName;
 		this.parentCategory = parentCategory;
-		this.languagePrefix = languagePrefix;
+		this.languageId = languageId;
 	}
 
-	public String getLanguagePrefix() {
-		return languagePrefix;
+	public Long getLanguageId() {
+		return languageId;
 	}
 
-	public void setLanguagePrefix(String languagePrefix) {
-		this.languagePrefix = languagePrefix;
+	public void setLanguageId(Long languageId) {
+		this.languageId = languageId;
 	}
 
 	public String getCategoryName() {
