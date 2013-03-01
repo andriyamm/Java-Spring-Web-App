@@ -9,6 +9,7 @@ import org.amm.ams.domain.CategoriesDef;
 import org.amm.ams.domain.Languages;
 import org.amm.ams.service.interfaces.CategoriesDefService;
 import org.amm.ams.web.commands.CategoryCommand;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +44,7 @@ public class CategoriesDefServiceImpl extends AmsServiceImpl<CategoriesDef> impl
 		CategoriesDef categoriesDef = new CategoriesDef();
 		categoriesDef.setName(categoryCommand.getCategoryName());
 		categoriesDef.setLang(lang);
+		categoriesDef.setCategories(category);
 		categoriesDefDao.insert(categoriesDef);
 	}
 
@@ -50,15 +52,17 @@ public class CategoriesDefServiceImpl extends AmsServiceImpl<CategoriesDef> impl
 	@Override
 	public void editCategory(CategoryCommand categoryCommand){
 
-		Categories category = new Categories();
-		category.setParent(categoryCommand.getParentCategory());
-		categoriesDao.insert(category);
-		
 		Languages lang = languagesDao.findById(categoryCommand.getLanguageId());
+
+		Categories category = categoriesDao.findById(categoryCommand.getCategoryId());
+		category.setParent(categoryCommand.getParentCategory());
+		categoriesDao.update(category);
 		
 		CategoriesDef categoriesDef = new CategoriesDef();
 		categoriesDef.setName(categoryCommand.getCategoryName());
 		categoriesDef.setLang(lang);
-		categoriesDefDao.insert(categoriesDef);
+		categoriesDef.setCategories(category);
+		
+		categoriesDefDao.update(categoriesDef);
 	}
 }
