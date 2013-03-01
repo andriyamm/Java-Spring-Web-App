@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.amm.ams.service.interfaces.CategoriesService;
 import org.amm.ams.service.interfaces.LanguagesService;
 import org.amm.ams.web.commands.ArticleCommand;
 import org.amm.ams.web.commands.CategoryCommand;
@@ -20,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("articles")
 public class CreateArticle {
 	
-	@Autowired
-	private CategoriesService categoriesService;
+	//@Autowired
+	//private CategoriesService categoriesService;
 	
 	@Autowired
 	private LanguagesService languagesService;
@@ -35,7 +34,7 @@ public class CreateArticle {
 		//params.put("action", "category/create");
 		
 		params.put("languages", languagesService.findAll());
-		params.put("categories", categoriesService.findAll());
+		//params.put("categories", categoriesService.findAll());
 		
 		return "categories/create";
 	}

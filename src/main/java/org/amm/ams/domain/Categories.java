@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -28,16 +29,23 @@ public class Categories implements Serializable, Identifiable {
 	@Column(name = "parent")
 	private Long parent;
 
+	@OneToMany(mappedBy="categories")
+	private Set<CategoriesDef> categoriesDef = new HashSet<CategoriesDef>();
+
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")
 	private Set<Articles> articles = new HashSet<Articles>();
 
 	public Categories() {
+		super();
 	}
 
-	public Categories(Long id, Set<Articles> articles, Long parent) {
+	public Categories(Long id, Long parent, Set<CategoriesDef> categoriesDef,
+			Set<Articles> articles) {
+		super();
 		this.id = id;
-		this.articles = articles;
 		this.parent = parent;
+		this.categoriesDef = categoriesDef;
+		this.articles = articles;
 	}
 
 	public Long getId() {
@@ -64,10 +72,22 @@ public class Categories implements Serializable, Identifiable {
 		this.parent = parent;
 	}
 
+	public Set<CategoriesDef> getCategoriesDef() {
+		return categoriesDef;
+	}
+
+	public void setCategoriesDef(Set<CategoriesDef> categoriesDef) {
+		this.categoriesDef = categoriesDef;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(articles)
-				.append(parent).toHashCode();
+				.append(categoriesDef).append(parent).toHashCode();
 	}
 
 	@Override
@@ -85,13 +105,14 @@ public class Categories implements Serializable, Identifiable {
 		Categories rhs = (Categories) obj;
 		return new EqualsBuilder().append(id, rhs.id)
 				.append(articles, rhs.articles).append(parent, rhs.parent)
-				.isEquals();
+				.append(categoriesDef, rhs.categoriesDef).isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id)
-				.append("articles", articles).append("parent", parent).toString();
+				.append("articles", articles).append("parent", parent)
+				.append("categoriesDef", categoriesDef).toString();
 	}
 
 }

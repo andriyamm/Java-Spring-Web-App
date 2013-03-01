@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -23,6 +24,7 @@ public class ArticlesDef implements Serializable {
 	private Long id;
 
 	@ManyToOne
+	@JoinColumn(name = "articles_id")
 	private Articles article;
 
 	@Column(name = "title")
@@ -32,18 +34,19 @@ public class ArticlesDef implements Serializable {
 	private String body;
 
 	@ManyToOne
-	private Languages lang;
+	@JoinColumn(name = "languages_id")
+	private Languages languages;
 
 	public ArticlesDef() {
 	}
 
 	public ArticlesDef(Long id, Articles article, String title, String body,
-			Languages lang) {
+			Languages languages) {
 		this.id = id;
 		this.article = article;
 		this.title = title;
 		this.body = body;
-		this.lang = lang;
+		this.languages = languages;
 	}
 
 	public Long getId() {
@@ -71,11 +74,11 @@ public class ArticlesDef implements Serializable {
 	}
 
 	public Languages getLang() {
-		return lang;
+		return languages;
 	}
 
 	public void setLang(Languages lang) {
-		this.lang = lang;
+		this.languages = lang;
 	}
 
 	public Articles getArticle() {
@@ -89,7 +92,7 @@ public class ArticlesDef implements Serializable {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(article)
-				.append(title).append(body).append(lang).toHashCode();
+				.append(title).append(body).append(languages).toHashCode();
 	}
 
 	@Override
@@ -107,13 +110,13 @@ public class ArticlesDef implements Serializable {
 		ArticlesDef rhs = (ArticlesDef) obj;
 		return new EqualsBuilder().append(id, rhs.id).append(title, rhs.title)
 				.append(article, rhs.article).append(body, rhs.body)
-				.append(lang, rhs.lang).isEquals();
+				.append(languages, rhs.languages).isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id)
 				.append("title", title).append("article", article)
-				.append("body", body).append("lang", lang).toString();
+				.append("body", body).append("lang", languages).toString();
 	}
 }

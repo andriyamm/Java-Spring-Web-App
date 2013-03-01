@@ -12,21 +12,27 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ArticlesServiceImpl implements ArticlesService{
 
-	@Autowired
-	private ArticlesDao articlesDao;
-
-	public ArticlesDao getArticlesDao() {
-		return articlesDao;
-	}
-
-	public void setArticlesDao(ArticlesDao articlesDao) {
-		this.articlesDao = articlesDao;
-	}
-
 	@Override
-	@Transactional
 	public List<Articles> findAll() {
-		return articlesDao.findAll();
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	//@Autowired
+	//private ArticlesDao articlesDao;
+
+//	public ArticlesDao getArticlesDao() {
+//		return articlesDao;
+//	}
+//
+//	public void setArticlesDao(ArticlesDao articlesDao) {
+//		this.articlesDao = articlesDao;
+//	}
+
+//	@Override
+//	@Transactional
+//	public List<Articles> findAll() {
+//		return articlesDao.findAll();
+//	}
 	
 }

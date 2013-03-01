@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -26,15 +27,24 @@ public class CategoriesDef implements Serializable {
 	private String name;
 
 	@ManyToOne
-	private Languages lang;
+	@JoinColumn(name = "languages_id")
+	private Languages languages;
+
+	@ManyToOne
+	@JoinColumn(name = "categories_id")
+	private Categories categories;
 
 	public CategoriesDef() {
+		super();
 	}
 
-	public CategoriesDef(Long id, String name, Languages lang) {
+	public CategoriesDef(Long id, String name, Languages lang,
+			Categories categories) {
+		super();
 		this.id = id;
 		this.name = name;
-		this.lang = lang;
+		this.languages = lang;
+		this.categories = categories;
 	}
 
 	public Long getId() {
@@ -54,17 +64,29 @@ public class CategoriesDef implements Serializable {
 	}
 
 	public Languages getLang() {
-		return lang;
+		return languages;
 	}
 
 	public void setLang(Languages lang) {
-		this.lang = lang;
+		this.languages = lang;
+	}
+
+	public Categories getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Categories categories) {
+		this.categories = categories;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(id).append(name)
-				.append(lang).toHashCode();
+		return new HashCodeBuilder(17, 37).append(id).append(name).append(languages)
+				.append(categories).toHashCode();
 	}
 
 	@Override
@@ -81,12 +103,14 @@ public class CategoriesDef implements Serializable {
 
 		CategoriesDef rhs = (CategoriesDef) obj;
 		return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name)
-				.append(lang, rhs.lang).isEquals();
+				.append(categories, rhs.categories).append(languages, rhs.languages)
+				.isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id).append("name", name)
-				.append("lang", lang).toString();
+				.append("categories", categories).append("lang", languages)
+				.toString();
 	}
 }

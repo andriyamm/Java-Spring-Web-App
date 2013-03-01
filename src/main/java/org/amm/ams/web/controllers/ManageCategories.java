@@ -5,11 +5,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-
-import org.amm.ams.service.interfaces.CategoriesService;
+import org.amm.ams.service.interfaces.CategoriesDefService;
 import org.amm.ams.service.interfaces.LanguagesService;
 import org.amm.ams.web.commands.CategoryCommand;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ManageCategories {
 
 	@Autowired
-	private CategoriesService categoriesService;
+	private CategoriesDefService categoriesDefService;
 	
 	@Autowired
 	private LanguagesService languagesService;
@@ -32,11 +30,8 @@ public class ManageCategories {
 			@ModelAttribute("categoryCommand") CategoryCommand categoryCommand,
 			HttpSession session) {
 		
-		//String temp = DOMAIN + "/category/create"; //TODO
-		//params.put("action", "category/create");
-		
 		params.put("languages", languagesService.findAll());
-		params.put("categories", categoriesService.findAll());
+		params.put("categories", categoriesDefService.findAll());
 		
 		return "categories/create";
 	}
@@ -47,15 +42,37 @@ public class ManageCategories {
 			BindingResult result, Map<String, Object> params, Locale locale,
 			HttpSession session) {
 
-		categoriesService.createCategory(categoryCommand);
+		categoriesDefService.createCategory(categoryCommand);
 		
-		return locale.getDisplayLanguage();
+		return "categories/create";//TODO: redirect
+	}
+	
+	
+	@RequestMapping(value = "edit", method = RequestMethod.GET)
+	public String createEditCategoryForm(Map<String, Object> params,
+			@ModelAttribute("categoryCommand") CategoryCommand categoryCommand,
+			HttpSession session) {
+		
+		params.put("languages", languagesService.findAll());
+		params.put("categories", categoriesDefService.findAll());
+		
+		return "categories/edit";
 	}
 
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public String submitEditCategoryForm(Map<String, Object> params,
+			@ModelAttribute("categoryCommand") CategoryCommand categoryCommand,
+			HttpSession session) {
+		
+		categoriesDefService.createCategory(categoryCommand);
+		
+		return "categories/create";
+	}
+	
 	@RequestMapping("list")
 	public String listCategory(Map<String, Object> params, HttpSession session) {
 		
-		params.put("categories", categoriesService.findAll());
+		params.put("categories", categoriesDefService.findAll());
 		
 		return "categories/list";
 	}

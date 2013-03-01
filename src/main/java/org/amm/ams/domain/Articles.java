@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -32,6 +33,9 @@ public class Articles implements Serializable, Identifiable {
 	private Boolean is_tmp;
 	private Date creationDate;
 	private Date publishDate;
+
+	@OneToMany(mappedBy = "languages")
+	private Set<ArticlesDef> articlesDef = new HashSet<ArticlesDef>();
 
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "Articles_Users", joinColumns = { @JoinColumn(name = "articles_id") }, inverseJoinColumns = { @JoinColumn(name = "users_id") })
@@ -127,6 +131,18 @@ public class Articles implements Serializable, Identifiable {
 
 	public void setBookmarks(Set<Bookmarks> bookmarks) {
 		this.bookmarks = bookmarks;
+	}
+
+	public Set<ArticlesDef> getArticlesDef() {
+		return articlesDef;
+	}
+
+	public void setArticlesDef(Set<ArticlesDef> articlesDef) {
+		this.articlesDef = articlesDef;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

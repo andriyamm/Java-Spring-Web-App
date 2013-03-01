@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Required;
 public class HibernateJpaDao<T> implements Dao<T> {
 
 	private final Class<T> persistentClass;
+	
 	private EntityManager entityManager;
 
 	// constructors
