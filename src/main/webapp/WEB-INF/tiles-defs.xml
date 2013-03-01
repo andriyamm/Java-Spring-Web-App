@@ -12,6 +12,7 @@
 		<put-attribute name="title" value="ams" />
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/tiles/body.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/sidebar.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 	</definition>
 
@@ -21,6 +22,7 @@
 		<put-attribute name="title" value="list" />
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/list.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/sidebar.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 	</definition>
 
@@ -28,6 +30,7 @@
 		<put-attribute name="title" value="list" />
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/articles/create.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/sidebar.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 	</definition>
 	
@@ -35,13 +38,23 @@
 		<put-attribute name="title" value="list" />
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/categories/create.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/sidebar.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 	</definition>
 	
+	<definition name="createCategory" extends="baseLayout">
+		<put-attribute name="title" value="list" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/categories/edit.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/sidebar.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
 	<definition name="listCategories" extends="baseLayout">
 		<put-attribute name="title" value="list" />
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/categories/list.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/sidebar.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 	</definition>
 	
