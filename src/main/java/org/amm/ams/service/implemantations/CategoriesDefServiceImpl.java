@@ -14,51 +14,64 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class CategoriesDefServiceImpl extends AmsServiceImpl<CategoriesDef> implements CategoriesDefService {
+public class CategoriesDefServiceImpl extends AmsServiceImpl<CategoriesDef>
+		implements CategoriesDefService {
 
 	@Autowired
 	private CategoriesDao categoriesDao;
-	
+
 	@Autowired
 	private CategoriesDefDao categoriesDefDao;
-	
+
 	@Autowired
 	private LanguagesDao languagesDao;
-	
+
 	@Override
 	public Dao<CategoriesDef> getDao() {
 		return categoriesDefDao;
 	}
-	
+
 	@Transactional
 	@Override
-	public void createCategory(CategoryCommand categoryCommand){
+	public void createCategory(CategoryCommand categoryCommand) {
 
-		Categories category = new Categories();
-		category.setParent(categoryCommand.getParentCategory());
-		categoriesDao.insert(category);
-		
 		Languages lang = languagesDao.findById(categoryCommand.getLanguageId());
-		
+
 		CategoriesDef categoriesDef = new CategoriesDef();
+		categoriesDef.setParent(categoryCommand.getParentCategory());
 		categoriesDef.setName(categoryCommand.getCategoryName());
 		categoriesDef.setLang(lang);
+
 		categoriesDefDao.insert(categoriesDef);
+
+		// Categories category = new Categories();
+		// category.setParent(categoryCommand.getParentCategory());
+		// categoriesDao.insert(category);
+		//
+		// Languages lang =
+		// languagesDao.findById(categoryCommand.getLanguageId());
+		//
+		// CategoriesDef categoriesDef = new CategoriesDef();
+		// categoriesDef.setName(categoryCommand.getCategoryName());
+		// categoriesDef.setLang(lang);
+		// categoriesDefDao.insert(categoriesDef);
 	}
 
 	@Transactional
 	@Override
-	public void editCategory(CategoryCommand categoryCommand){
+	public void editCategory(CategoryCommand categoryCommand) {
 
-		Categories category = new Categories();
-		category.setParent(categoryCommand.getParentCategory());
-		categoriesDao.insert(category);
-		
 		Languages lang = languagesDao.findById(categoryCommand.getLanguageId());
+
+		CategoriesDef categoriesDef = categoriesDefDao.findById(categoryCommand.getCategoryId());
 		
-		CategoriesDef categoriesDef = new CategoriesDef();
+		//CategoriesDef categoriesDef = new CategoriesDef();
+		
+		categoriesDef.setParent(categoryCommand.getParentCategory());
 		categoriesDef.setName(categoryCommand.getCategoryName());
 		categoriesDef.setLang(lang);
-		categoriesDefDao.insert(categoriesDef);
+
+		categoriesDefDao.update(categoriesDef);
+
 	}
 }

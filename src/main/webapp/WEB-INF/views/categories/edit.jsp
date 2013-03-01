@@ -6,13 +6,22 @@
 
 <div class="page">
 
-	<form:form method="post" action="edit" modelAttribute="categoryCommand">
+	<form:form method="post" action="" modelAttribute="categoryCommand">
 		<table>
 			<tr>
 				<td><spring:message code="category.categoryname" /></td>
 				<td>
 					<p>
-					<form:input path="categoryName" type="text" id="categoryName" value="${article}" />	
+					<form:input path="categoryId" type="text" id="categoryId" value="${category.id}" />	
+					</p>
+				</td>
+			</tr>
+
+			<tr>
+				<td><spring:message code="category.categoryname" /></td>
+				<td>
+					<p>
+					<form:input path="categoryName" type="text" id="categoryName" value="${category.name}" />	
 					</p>
 					<p class="error" id="titleErrors">
 						<form:errors path="categoryName" cssClass="error" id="categoryNameErrors" />

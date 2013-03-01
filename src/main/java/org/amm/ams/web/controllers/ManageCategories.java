@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -48,19 +49,22 @@ public class ManageCategories {
 	}
 	
 	
-	@RequestMapping(value = "edit", method = RequestMethod.GET)
-	public String createEditCategoryForm(Map<String, Object> params,
+	@RequestMapping(value = "edit/{categoryId}", method = RequestMethod.GET)
+	public String createEditCategoryForm(@PathVariable("categoryId") Long categoryId,
+			Map<String, Object> params,
 			@ModelAttribute("categoryCommand") CategoryCommand categoryCommand,
 			HttpSession session) {
 		
+		params.put("category_id", categoriesDefService.findByID(categoryId));
 		params.put("languages", languagesService.findAll());
 		params.put("categories", categoriesDefService.findAll());
 		
 		return "categories/edit";
 	}
 
-	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String submitEditCategoryForm(Map<String, Object> params,
+	@RequestMapping(value = "edit/{categoryId}", method = RequestMethod.POST)
+	public String submitEditCategoryForm(@PathVariable("categoryId") Long categoryId,
+			Map<String, Object> params,
 			@ModelAttribute("categoryCommand") CategoryCommand categoryCommand,
 			HttpSession session) {
 		
