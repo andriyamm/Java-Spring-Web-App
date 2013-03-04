@@ -7,7 +7,9 @@
 <c:if test="${!empty categories}">
 <ul>
 	<c:forEach var="category" items="${categories}" varStatus="status">
-		<li id="${category.id }">${category.category.id }|${category.id }|${category.name }</li>
+		
+		<li id="${category.id }">${category.id }|${category.categoryDef }</li>
+
 	</c:forEach>
 </ul>
 </c:if>

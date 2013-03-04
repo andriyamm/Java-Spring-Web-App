@@ -85,4 +85,10 @@ public class CategoryDefServiceImpl extends AmsServiceImpl<CategoryDef> implemen
 	private void find(){
 		
 	}
+
+	@Transactional
+	@Override
+	public  List<Category> findAllCategories() {
+		return categoriesDao.findAll();
+	}
 }

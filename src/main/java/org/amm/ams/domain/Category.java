@@ -22,6 +22,8 @@ import javax.persistence.OneToMany;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @NamedNativeQueries({ 
 	@NamedNativeQuery(
@@ -46,7 +48,8 @@ public class Category implements Serializable, Identifiable {
 	@OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
 	public List<Category> subCategories;
 
-	@OneToMany(mappedBy = "category")
+	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SELECT)
 	private Set<CategoryDef> categoryDef = new HashSet<CategoryDef>();
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")
@@ -120,9 +123,11 @@ public class Category implements Serializable, Identifiable {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(id).append(articles)
+		return new HashCodeBuilder(17, 37).append(id)
+				//.append(articles)
 				.append(categoryDef)
-				// .append(parent)
+				.append(parentCategory)
+				.append(subCategories)
 				.toHashCode();
 	}
 
@@ -140,17 +145,20 @@ public class Category implements Serializable, Identifiable {
 
 		Category rhs = (Category) obj;
 		return new EqualsBuilder().append(id, rhs.id)
-				.append(articles, rhs.articles)
-				// .append(parent, rhs.parent)
+				//.append(articles, rhs.articles)
+				.append(parentCategory, rhs.parentCategory)
+				.append(subCategories, rhs.subCategories)
 				.append(categoryDef, rhs.categoryDef).isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id)
-				.append("articles", articles)
-				// .append("parent", parent)
-				.append("categoryDef", categoryDef).toString();
+				//.append("articles", articles)
+				.append("parentCategory", parentCategory)
+				.append("categoryDef", categoryDef)
+				.append("subCategories", subCategories)
+				.toString();
 	}
 
 }

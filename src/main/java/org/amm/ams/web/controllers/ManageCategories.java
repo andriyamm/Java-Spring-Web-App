@@ -76,8 +76,9 @@ public class ManageCategories {
 	@RequestMapping("list")
 	public String listCategory(Map<String, Object> params, HttpSession session) {
 
-		params.put("categories", categoriesDefService.findAll());
-
+		//params.put("categories", categoriesDefService.findAll());
+		params.put("categories", categoriesDefService.findAllCategories());
+		
 		return "categories/list";
 	}
 
