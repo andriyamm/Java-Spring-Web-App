@@ -9,4 +9,6 @@ public interface CategoriesDefService extends AmsService<CategoriesDef> {
 
 	void editCategory(CategoryCommand categoryCommand);
 
+	void findCategories(Long languageId);
+
 }

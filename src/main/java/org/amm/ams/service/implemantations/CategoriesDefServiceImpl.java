@@ -1,5 +1,7 @@
 package org.amm.ams.service.implemantations;
 
+import java.util.List;
+
 import org.amm.ams.dao.interfaces.CategoriesDao;
 import org.amm.ams.dao.interfaces.CategoriesDefDao;
 import org.amm.ams.dao.interfaces.Dao;
@@ -36,7 +38,7 @@ public class CategoriesDefServiceImpl extends AmsServiceImpl<CategoriesDef> impl
 	public void createCategory(CategoryCommand categoryCommand){
 
 		Categories category = new Categories();
-		category.setParent(categoryCommand.getParentCategory());
+		//category.setParent(categoryCommand.getParentCategory());
 		categoriesDao.insert(category);
 		
 		Languages lang = languagesDao.findById(categoryCommand.getLanguageId());
@@ -55,7 +57,7 @@ public class CategoriesDefServiceImpl extends AmsServiceImpl<CategoriesDef> impl
 		Languages lang = languagesDao.findById(categoryCommand.getLanguageId());
 
 		Categories category = categoriesDao.findById(categoryCommand.getCategoryId());
-		category.setParent(categoryCommand.getParentCategory());
+		//category.setParent(categoryCommand.getParentCategory());
 		categoriesDao.update(category);
 		
 		CategoriesDef categoriesDef = new CategoriesDef();
@@ -64,5 +66,23 @@ public class CategoriesDefServiceImpl extends AmsServiceImpl<CategoriesDef> impl
 		categoriesDef.setCategories(category);
 		
 		categoriesDefDao.update(categoriesDef);
+	}
+	
+	@Transactional
+	@Override
+	public void findCategories(Long languageId){
+		
+		Languages lang = languagesDao.findById(languageId);
+		
+		List<Categories> categories = categoriesDao.findAll();
+		
+		for(Categories category : categories){
+			categoriesDefDao.findById(category.getId());
+		}
+		
+	}
+	
+	private void find(){
+		
 	}
 }

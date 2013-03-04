@@ -8,11 +8,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+@NamedQueries({
+	@NamedQuery(
+		name="find",
+		query="from CategoriesDef a where a.name like :name "),
+	@NamedQuery(
+		name="findBy",
+		query="from CategoriesDef a where a.name =:name and languages=:languages ")
+})
 @Entity
 public class CategoriesDef implements Serializable {
 
