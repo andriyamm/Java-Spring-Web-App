@@ -1,0 +1,15 @@
+#sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+ 
+#sidebar ul ul {
+    margin-left: 10px; 
+}
+ 
+#sidebar li {
+    display: block;
+    margin: 0;
+    padding: 1px 0 0 2px; 
+}

@@ -38,7 +38,7 @@ public class CategoriesDefServiceImpl extends AmsServiceImpl<CategoriesDef> impl
 	public void createCategory(CategoryCommand categoryCommand){
 
 		Categories category = new Categories();
-		//category.setParent(categoryCommand.getParentCategory());
+		category.setParentCategory(categoriesDao.findById(categoryCommand.getParentCategory()));
 		categoriesDao.insert(category);
 		
 		Languages lang = languagesDao.findById(categoryCommand.getLanguageId());
@@ -57,7 +57,7 @@ public class CategoriesDefServiceImpl extends AmsServiceImpl<CategoriesDef> impl
 		Languages lang = languagesDao.findById(categoryCommand.getLanguageId());
 
 		Categories category = categoriesDao.findById(categoryCommand.getCategoryId());
-		//category.setParent(categoryCommand.getParentCategory());
+		category.setParentCategory(categoriesDao.findById(categoryCommand.getParentCategory()));
 		categoriesDao.update(category);
 		
 		CategoriesDef categoriesDef = new CategoriesDef();

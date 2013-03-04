@@ -16,5 +16,6 @@
 			</td>
 		</tr>
 	</table>
+	<p>end header area</p>
 </header>
 		
