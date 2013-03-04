@@ -5,8 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.amm.ams.service.interfaces.CategoriesDefService;
-import org.amm.ams.service.interfaces.LanguagesService;
+import org.amm.ams.service.interfaces.CategoryDefService;
+import org.amm.ams.service.interfaces.LanguageService;
 import org.amm.ams.web.commands.CategoryCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ManageCategories {
 
 	@Autowired
-	private CategoriesDefService categoriesDefService;
+	private CategoryDefService categoriesDefService;
 	
 	@Autowired
-	private LanguagesService languagesService;
+	private LanguageService languagesService;
 	
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createAddCategoryForm(Map<String, Object> params,

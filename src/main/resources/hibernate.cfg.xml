@@ -8,24 +8,25 @@
 
 		<!-- <property name="dialect">org.amm.ams.UnicodeSQLServerDialect</property> -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<property name="hibernate.dialect">org.amm.ams.dbcollation.MySQL5InnoDBDialectUTF8Support</property> 
+		<!-- <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property> -->
 		<!-- <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> -->
 		<property name="hibernate.show_sql">true</property>
 		<property name="current_session_context_class">thread</property>
 		<property name="hibernate.connection.autocommit">true</property>
 		<property name="hibernate.connection.pool_size">10</property>
 
-		<mapping class="org.amm.ams.domain.Articles" />
-		<mapping class="org.amm.ams.domain.ArticlesDef" />
-		<mapping class="org.amm.ams.domain.Bookmarks" />
-		<mapping class="org.amm.ams.domain.Categories" />
-		<mapping class="org.amm.ams.domain.CategoriesDef" />
-		<mapping class="org.amm.ams.domain.Comments" />
-		<mapping class="org.amm.ams.domain.Languages" />
-		<mapping class="org.amm.ams.domain.Roles" />
-		<mapping class="org.amm.ams.domain.Tags" />
-		<mapping class="org.amm.ams.domain.Users" />
-		<mapping class="org.amm.ams.domain.UserGroups" />
+		<mapping class="org.amm.ams.domain.Article" />
+		<mapping class="org.amm.ams.domain.ArticleDef" />
+		<mapping class="org.amm.ams.domain.Bookmark" />
+		<mapping class="org.amm.ams.domain.Category" />
+		<mapping class="org.amm.ams.domain.CategoryDef" />
+		<mapping class="org.amm.ams.domain.Comment" />
+		<mapping class="org.amm.ams.domain.Language" />
+		<mapping class="org.amm.ams.domain.Role" />
+		<mapping class="org.amm.ams.domain.Tag" />
+		<mapping class="org.amm.ams.domain.User" />
+		<mapping class="org.amm.ams.domain.UserGroup" />
 
 	</session-factory>
 

@@ -3,8 +3,10 @@ octo-ninja-ams
 Test web application.
 
 Technologies, frameworks and tools:
+	Java,
 	Spring MVC;
 	Hibernate, JPA; 
+	tomcat;
 	Maven.
 
 Plan to add
@@ -15,4 +17,7 @@ Plan to add
 	Web Services,
 	JUnit, Mockito
 	Jenkins, Hudson
+	HTML5,
+	JavaScript,
+	CSS
 	... 

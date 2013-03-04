@@ -15,22 +15,22 @@
 
 	<persistence-unit name="jpaPersistenceUnit" transaction-type="RESOURCE_LOCAL">
 		
-		<class>org.amm.ams.domain.Articles</class>
-		<class>org.amm.ams.domain.ArticlesDef</class>
-		<class>org.amm.ams.domain.Bookmarks</class>
-		<class>org.amm.ams.domain.Categories</class>
-		<class>org.amm.ams.domain.CategoriesDef</class>
-		<class>org.amm.ams.domain.Comments</class>
-		<class>org.amm.ams.domain.Languages</class>
-		<class>org.amm.ams.domain.Roles</class>
-		<class>org.amm.ams.domain.Tags</class>
-		<class>org.amm.ams.domain.Users</class>
-		<class>org.amm.ams.domain.UserGroups</class>
+		<class>org.amm.ams.domain.Article</class>
+		<class>org.amm.ams.domain.ArticleDef</class>
+		<class>org.amm.ams.domain.Bookmark</class>
+		<class>org.amm.ams.domain.Category</class>
+		<class>org.amm.ams.domain.CategoryDef</class>
+		<class>org.amm.ams.domain.Comment</class>
+		<class>org.amm.ams.domain.Language</class>
+		<class>org.amm.ams.domain.Role</class>
+		<class>org.amm.ams.domain.Tag</class>
+		<class>org.amm.ams.domain.User</class>
+		<class>org.amm.ams.domain.UserGroup</class>
 		
 		<properties>
 			<!-- <property name="dialect">org.amm.ams.UnicodeSQLServerDialect</property> -->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.dialect" value="org.amm.ams.dbcollation.MySQL5InnoDBDialectUTF8Support" />
 			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> -->
 			<property name="hibernate.show_sql" value="true" />
 			<property name="current_session_context_class" value="thread" />

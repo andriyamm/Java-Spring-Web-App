@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.amm.ams.service.interfaces.LanguagesService;
+import org.amm.ams.service.interfaces.LanguageService;
 import org.amm.ams.web.commands.ArticleCommand;
 import org.amm.ams.web.commands.CategoryCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class CreateArticle {
 	//private CategoriesService categoriesService;
 	
 	@Autowired
-	private LanguagesService languagesService;
+	private LanguageService languagesService;
 	
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createAddArticleForm(Map<String, Object> params,
