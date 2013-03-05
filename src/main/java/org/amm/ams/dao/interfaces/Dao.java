@@ -2,24 +2,28 @@ package org.amm.ams.dao.interfaces;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Basic data access object, for all entites.
+ * 
  * @param <T>
  *            anything, that has ID field.
  */
 public interface Dao<T> {
-	
-	/**
-	 * @return count of all rows of the appropriate table in the DB.
-	 */
-	Long getRowCount();
 
 	/**
 	 * @return list of all rows of the appropriate table in the DB.
 	 */
 	List<T> findAll();
+
+	/**
+	 * Find an entity by its primary key
+	 * 
+	 * @param id
+	 *            the primary key
+	 * @return the entity
+	 */
+	T findById(Serializable id);
 
 	/**
 	 * Removes entity from db.
@@ -29,7 +33,6 @@ public interface Dao<T> {
 	 * @return TODO
 	 */
 	void delete(final T entity);
-	
 
 	/**
 	 * Removes entity from db.
@@ -41,41 +44,34 @@ public interface Dao<T> {
 	void delete(final Long id);
 
 	/**
-	 * TODO
-	 * @param id
-	 * @return
-	 */
-	T findById(Serializable id);
-
-	/**
-	 * 
-	 * @param name
-	 * @param params
-	 * @return
-	 */
-	List<T> findByNamedQuery(String name, Object[] params);
-
-	/**
-	 * 
-	 * @param name
-	 * @param params
-	 * @return
-	 */
-	List<T> findByNamedQueryAndNamedParams(String name,
-			Map<String, ? extends Object> params);
-
-	
-	/**
+	 * save an entity. This can be either a INSERT or UPDATE in the database.
 	 * 
 	 * @param entity
-	 * @return
+	 *            the entity to save
+	 * 
+	 * @return the saved entity
 	 */
-	T update(T entity);
-	
+	T save(T entity);
+
 	/**
+	 * INSERT entity in the database.
+	 * 
 	 * 
 	 * @param entity
-	 * @return
+	 *            the entity to save
+	 * 
+	 * @return the INSERTed entity
 	 */
 	T insert(T entity);
+
+	/**
+	 * UPDATE entity in the database.
+	 * 
+	 * @param entity
+	 *            the entity to save
+	 * 
+	 * @return the UPDATEd entity
+	 */
+	T update(T entity);
+
 }

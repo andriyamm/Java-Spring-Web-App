@@ -59,15 +59,10 @@ public class Category implements Serializable, Identifiable {
 		super();
 	}
 
-	public Category(Long id, Category parentCategory,
-			List<Category> subCategories, Set<CategoryDef> categoryDef,
-			Set<Article> articles) {
+	public Category(Long id, Category parentCategory) {
 		super();
 		this.id = id;
 		this.parentCategory = parentCategory;
-		this.subCategories = subCategories;
-		this.categoryDef = categoryDef;
-		this.articles = articles;
 	}
 
 	public Category getParentCategory() {

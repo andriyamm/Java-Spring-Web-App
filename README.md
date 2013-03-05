@@ -7,9 +7,10 @@ Technologies, frameworks and tools:
 	Spring MVC;
 	Hibernate, JPA; 
 	tomcat;
+	MySql;
 	Maven.
 
-Plan to add
+Plan to add:
 	Spring Security, 
 	Ant/Ivy, 
 	JDO, 
@@ -19,5 +20,7 @@ Plan to add
 	Jenkins, Hudson
 	HTML5,
 	JavaScript,
+	Jquery,
+	BackBone,
 	CSS
 	... 

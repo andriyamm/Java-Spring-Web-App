@@ -19,12 +19,6 @@ public abstract class AmsServiceImpl<T> implements AmsService<T> {
 	
 	@Override
 	@Transactional
-	public Long getRowCount() {
-		return getDao().getRowCount();
-	}
-
-	@Override
-	@Transactional
 	public List<T> findAll() {
 		return getDao().findAll();
 	}

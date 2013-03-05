@@ -6,11 +6,6 @@ import java.util.List;
 public interface AmsService<T> {
 
 	/**
-	 * @return count of all rows of the appropriate table in the DB.
-	 */
-	Long getRowCount();
-
-	/**
 	 * @return list of all rows of the appropriate table in the DB.
 	 */
 	List<T> findAll();
@@ -34,7 +29,7 @@ public interface AmsService<T> {
 	 * insert entity into the db
 	 * 
 	 * @param entity
-	 *          entity to proceed.
+	 *            entity to proceed.
 	 * @return
 	 */
 	T insert(T entity);
@@ -43,7 +38,7 @@ public interface AmsService<T> {
 	 * update entity into the db
 	 * 
 	 * @param entity
-	 *           entity to proceed.
+	 *            entity to proceed.
 	 * @return
 	 */
 	T update(T entity);

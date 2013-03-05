@@ -9,16 +9,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.amm.ams.dao.interfaces.Dao;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Projections;
+import org.amm.ams.dao.interfaces.FindableDaoNamedQuery;
 import org.springframework.beans.factory.annotation.Required;
 
 //public class HibernateJpaDao<T extends Identifiable> implements Dao<T> {
-public class HibernateJpaDao<T> implements Dao<T> {
+public class HibernateJpaDao<T> implements Dao<T>, FindableDaoNamedQuery<T> {
 
 	private final Class<T> persistentClass;
-	
+
 	private EntityManager entityManager;
 
 	// constructors
@@ -51,26 +49,11 @@ public class HibernateJpaDao<T> implements Dao<T> {
 
 	// methods
 
-	@Override
-	public Long getRowCount() {
-
-		Session session = (Session) entityManager.getDelegate();
-
-		Criteria criteria = session.createCriteria(persistentClass);
-		criteria.setProjection(Projections.rowCount());
-		Long count = (Long) criteria.uniqueResult();
-
-		return count;
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findAll() {
-
-		Session session = (Session) getEntityManager().getDelegate();
-		Criteria crit = session.createCriteria(getPersistentClass());
-
-		return crit.list();
+		return entityManager.createQuery("from " + persistentClass.getName())
+				.getResultList();
 	}
 
 	@Override
@@ -87,6 +70,12 @@ public class HibernateJpaDao<T> implements Dao<T> {
 	public T insert(T entity) {
 		this.entityManager.persist(entity);
 		return entity;
+	}
+
+	@Override
+	public T save(T entity) {
+		final T savedEntity = getEntityManager().merge(entity);
+		return savedEntity;
 	}
 
 	@Override
