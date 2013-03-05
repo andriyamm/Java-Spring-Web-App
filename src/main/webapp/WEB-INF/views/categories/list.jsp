@@ -8,8 +8,11 @@
 <ul>
 	<c:forEach var="category" items="${categories}" varStatus="status">
 		
-		<li id="${category.id }">${category.id }|${category.categoryDef }</li>
-
+	<c:if test="${!empty category.categoryDef}">
+			<c:forEach var="def" items="${category.categoryDef}" varStatus="status">
+				<li id="${category.id }">${category.id }|${def.name }</li>
+			</c:forEach>
+		</c:if>
 	</c:forEach>
 </ul>
 </c:if>

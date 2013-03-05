@@ -125,9 +125,9 @@ public class Category implements Serializable, Identifiable {
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id)
 				//.append(articles)
-				.append(categoryDef)
+				//.append(categoryDef)
 				.append(parentCategory)
-				.append(subCategories)
+				//.append(subCategories)
 				.toHashCode();
 	}
 
@@ -147,8 +147,9 @@ public class Category implements Serializable, Identifiable {
 		return new EqualsBuilder().append(id, rhs.id)
 				//.append(articles, rhs.articles)
 				.append(parentCategory, rhs.parentCategory)
-				.append(subCategories, rhs.subCategories)
-				.append(categoryDef, rhs.categoryDef).isEquals();
+				//.append(subCategories, rhs.subCategories)
+				//.append(categoryDef, rhs.categoryDef)
+				.isEquals();
 	}
 
 	@Override
@@ -156,8 +157,8 @@ public class Category implements Serializable, Identifiable {
 		return new ToStringBuilder(this).append("id", id)
 				//.append("articles", articles)
 				.append("parentCategory", parentCategory)
-				.append("categoryDef", categoryDef)
-				.append("subCategories", subCategories)
+				//.append("categoryDef", categoryDef)
+				//.append("subCategories", subCategories)
 				.toString();
 	}
 

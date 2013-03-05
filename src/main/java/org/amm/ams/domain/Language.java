@@ -96,7 +96,9 @@ public class Language implements Serializable {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(name)
-				.append(categoryDef).append(articleDef).append(prefix)
+				//.append(categoryDef)
+				//.append(articleDef)
+				.append(prefix)
 				.toHashCode();
 	}
 
@@ -113,17 +115,19 @@ public class Language implements Serializable {
 		}
 
 		Language rhs = (Language) obj;
-		return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name)
-				.append(articleDef, rhs.articleDef)
-				.append(categoryDef, rhs.categoryDef)
+		return new EqualsBuilder().append(id, rhs.id)
+				.append(name, rhs.name)
+				//.append(articleDef, rhs.articleDef)
+				//.append(categoryDef, rhs.categoryDef)
 				.append(prefix, rhs.prefix).isEquals();
 	}
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("id", id).append("name", name)
-				.append("articleDef", articleDef)
-				.append("categoryDef", categoryDef)
+		return new ToStringBuilder(this).append("id", id)
+				.append("name", name)
+				//.append("articleDef", articleDef)
+				//.append("categoryDef", categoryDef)
 				.append("prefix", prefix).toString();
 	}
 }

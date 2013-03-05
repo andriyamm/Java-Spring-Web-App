@@ -2,11 +2,13 @@ package org.amm.ams.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -40,8 +42,11 @@ public class CategoryDef implements Serializable {
 	@JoinColumn(name = "language_id")
 	private Language language;
 
-	@ManyToOne
-	@JoinColumn(name = "category_id")
+
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinTable (name="categorydef_category",
+		joinColumns=@JoinColumn(name="categorydef_id"),
+		inverseJoinColumns=@JoinColumn(name="category_id"))
 	private Category category;
 
 	public CategoryDef() {
@@ -95,8 +100,12 @@ public class CategoryDef implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(id).append(name).append(language)
-				.append(category).toHashCode();
+		return new HashCodeBuilder(17, 37)
+				.append(id)
+				.append(name)
+				.append(language)
+				//.append(category)
+				.toHashCode();
 	}
 
 	@Override
@@ -112,15 +121,19 @@ public class CategoryDef implements Serializable {
 		}
 
 		CategoryDef rhs = (CategoryDef) obj;
-		return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name)
-				.append(category, rhs.category).append(language, rhs.language)
+		return new EqualsBuilder()
+				.append(id, rhs.id)
+				.append(name, rhs.name)
+				//.append(category, rhs.category)
+				.append(language, rhs.language)
 				.isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id).append("name", name)
-				.append("category", category).append("lang", language)
+				//.append("category", category)
+				.append("lang", language)
 				.toString();
 	}
 }

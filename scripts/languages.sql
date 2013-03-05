@@ -1,1 +1,1 @@
-INSERT INTO `ams`.`languages` (`languages_id`, `name`, `prefix`) VALUES (NULL, 'English', 'en'), (NULL, 'Ukrainian', 'ua');
+INSERT INTO `ams`.`language` (`language_id`, `name`, `prefix`) VALUES (NULL, 'English', 'en'), (NULL, 'Ukrainian', 'ua');
