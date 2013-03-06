@@ -56,17 +56,12 @@ public class Article implements Serializable, Identifiable {
 	}
 
 	public Article(Long id, Boolean is_tmp, Date creationDate,
-			Date publishDate, Set<User> users, Set<Tag> tags,
-			Set<Category> categories, Set<Bookmark> bookmarks) {
+			Date publishDate) {
 		super();
 		this.id = id;
 		this.is_tmp = is_tmp;
 		this.creationDate = creationDate;
 		this.publishDate = publishDate;
-		this.users = users;
-		this.tags = tags;
-		this.categories = categories;
-		this.bookmarks = bookmarks;
 	}
 
 	public Long getId() {
@@ -148,8 +143,7 @@ public class Article implements Serializable, Identifiable {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(is_tmp)
-				.append(users).append(tags).append(categories)
-				.append(creationDate).append(publishDate).append(bookmarks)
+				.append(creationDate).append(publishDate)
 				.toHashCode();
 	}
 
@@ -167,20 +161,18 @@ public class Article implements Serializable, Identifiable {
 
 		Article rhs = (Article) obj;
 		return new EqualsBuilder().append(id, rhs.id)
-				.append(is_tmp, rhs.is_tmp).append(users, rhs.users)
-				.append(tags, rhs.tags).append(categories, rhs.categories)
+				.append(is_tmp, rhs.is_tmp)
 				.append(creationDate, rhs.creationDate)
 				.append(publishDate, rhs.publishDate)
-				.append(bookmarks, rhs.bookmarks).isEquals();
+				.isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id)
-				.append("is_tmp", is_tmp).append("users", users)
-				.append("tags", tags).append("categories", categories)
+				.append("is_tmp", is_tmp)
 				.append("creationDate", creationDate)
 				.append("publishDate", publishDate)
-				.append("bookmarks", bookmarks).toString();
+				.toString();
 	}
 }
