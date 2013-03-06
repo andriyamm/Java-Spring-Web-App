@@ -44,9 +44,10 @@ public class CategoryDef implements Serializable {
 
 
 	@ManyToOne(cascade={CascadeType.ALL})
-	@JoinTable (name="categorydef_category",
-		joinColumns=@JoinColumn(name="categorydef_id"),
-		inverseJoinColumns=@JoinColumn(name="category_id"))
+//	@JoinTable (name="categorydef_category",
+//		joinColumns=@JoinColumn(name="categorydef_id"),
+//		inverseJoinColumns=@JoinColumn(name="category_id"))
+	@JoinColumn(name="category_id")
 	private Category category;
 
 	public CategoryDef() {

@@ -27,8 +27,8 @@ import org.hibernate.annotations.FetchMode;
 
 @NamedNativeQueries({ 
 	@NamedNativeQuery(
-			name = "findById", 
-			query = "select * from category c where c.categories_id = :categories_id", 
+			name = "findAllByLang", 
+			query = "SELECT * FROM category AS c LEFT JOIN categorydef AS cd ON c.category_id = cd.category_id WHERE cd.language_id = :lang", 
 			resultClass = Category.class) 
 	})
 @Entity

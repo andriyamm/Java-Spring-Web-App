@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.amm.ams.domain.Category;
 import org.amm.ams.domain.CategoryDef;
+import org.amm.ams.domain.Language;
 import org.amm.ams.web.commands.CategoryCommand;
 
 public interface CategoryDefService extends AmsService<CategoryDef> {
@@ -30,6 +31,10 @@ public interface CategoryDefService extends AmsService<CategoryDef> {
 	 * TODO
 	 * @return
 	 */
-	 List<Category> findAllCategories();
+	List<Category> findAllCategories(Language lang);
+
+	List<Category> findAllCategories();
+
+	List<Category> find(String langPrefix);
 
 }

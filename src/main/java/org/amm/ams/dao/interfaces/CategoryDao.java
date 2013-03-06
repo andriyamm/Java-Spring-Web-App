@@ -1,7 +1,13 @@
 package org.amm.ams.dao.interfaces;
 
-import org.amm.ams.domain.Category;
+import java.util.List;
 
-public interface CategoryDao extends Dao<Category> {
+import org.amm.ams.domain.Category;
+import org.amm.ams.domain.Language;
+
+public interface CategoryDao extends Dao<Category>,
+		FindableDaoCriteria<Category>, FindableDaoNamedQuery<Category> {
+
+	List<Category> find(final Language lang);
 
 }

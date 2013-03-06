@@ -1,5 +1,7 @@
 package org.amm.ams.service.implemantations;
 
+import static org.amm.ams.common.AmsNamedQuery.Category.FIND_ALL_BY_LANG;
+
 import java.util.List;
 
 import org.amm.ams.dao.interfaces.CategoryDao;
@@ -82,13 +84,26 @@ public class CategoryDefServiceImpl extends AmsServiceImpl<CategoryDef> implemen
 		
 	}
 	
-	private void find(){
-		
+	@Transactional
+	@Override
+	public List<Category> find(String langPrefix){
+		Language lang = languagesDao.findByPrefix(langPrefix);
+		return categoriesDao.find(lang);
 	}
 
 	@Transactional
 	@Override
+	public  List<Category> findAllCategories(Language lang) {
+		//return null;
+		Object[] obj = new Object[1];
+		obj[0] = lang; 
+		return categoriesDao.findByNamedQuery(FIND_ALL_BY_LANG, obj);
+	}
+	
+	@Transactional
+	@Override
 	public  List<Category> findAllCategories() {
 		return categoriesDao.findAll();
+//		return categoriesDefDao.findAllByLang(lang);
 	}
 }
