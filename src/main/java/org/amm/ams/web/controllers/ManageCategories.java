@@ -1,5 +1,6 @@
 package org.amm.ams.web.controllers;
 
+
 import java.util.Locale;
 import java.util.Map;
 
@@ -9,13 +10,13 @@ import org.amm.ams.service.interfaces.CategoryDefService;
 import org.amm.ams.service.interfaces.LanguageService;
 import org.amm.ams.web.commands.CategoryCommand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("category")
@@ -62,7 +63,7 @@ public class ManageCategories {
 
 		return "categories/edit";
 	}
-
+ 
 	@RequestMapping(value = "edit/{categoryId}", method = RequestMethod.POST)
 	public String submitEditCategoryForm(@PathVariable("categoryId") Long categoryId,
 			Map<String, Object> params,
@@ -75,11 +76,12 @@ public class ManageCategories {
 	}
 
 	@RequestMapping("list")
-	public String listCategory(@RequestParam("lang") String langPrefix,
+	public String listCategory(
 			Map<String, Object> params, HttpSession session) {
 
-		//params.put("categories", categoriesDefService.findAll());
-		//params.put("categories", categoriesDefService.findAllCategories());
+		String langPrefix = LocaleContextHolder.getLocale().getLanguage();
+		
+		params.put("language", languagesService.findByPrefix(langPrefix));
 		params.put("categories", categoriesDefService.find(langPrefix));
 		
 		return "categories/list";

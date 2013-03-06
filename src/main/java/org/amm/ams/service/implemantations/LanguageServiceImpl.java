@@ -19,4 +19,9 @@ public class LanguageServiceImpl extends AmsServiceImpl<Language> implements Lan
 		return languagesDao;
 	}
 
+	@Override
+	public Language findByPrefix(String langPrefix) {
+		return languagesDao.findByPrefix(langPrefix);
+	}
+
 }

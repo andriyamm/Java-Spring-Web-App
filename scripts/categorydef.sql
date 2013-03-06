@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2013 at 05:11 PM
+-- Generation Time: Mar 06, 2013 at 04:43 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -41,14 +41,14 @@ CREATE TABLE IF NOT EXISTS `categorydef` (
 --
 
 INSERT INTO `categorydef` (`categorydef_id`, `name`, `category_id`, `language_id`) VALUES
-(1, 'cat 3 lan en', 3, 1),
-(2, 'cat 3 lan ua', 3, 2),
-(3, 'cat 6', 6, 1),
-(4, 'cat 7', 7, 1),
-(5, 'cat 12', 12, 1),
-(6, 'cat 11', 11, 1),
-(7, 'cat 13', 13, 1),
-(8, 'cat 14', 14, 1),
+(1, 'cat 3 en', 3, 1),
+(2, 'cat 3 ua', 3, 2),
+(3, 'cat 6 en', 6, 1),
+(4, 'cat 7 en', 7, 1),
+(5, 'cat 12 en', 12, 1),
+(6, 'cat 11 en', 11, 1),
+(7, 'cat 13 en', 13, 1),
+(8, 'cat 14 en', 14, 1),
 (9, 'cat 8 ua', 8, 2),
 (10, 'cat 9 ua', 9, 2),
 (11, 'cat 4 ua', 4, 2),

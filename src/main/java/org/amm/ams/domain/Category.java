@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,8 +16,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKey;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -28,9 +32,14 @@ import org.hibernate.annotations.FetchMode;
 @NamedNativeQueries({ 
 	@NamedNativeQuery(
 			name = "findAllByLang", 
-			query = "SELECT * FROM category AS c LEFT JOIN categorydef AS cd ON c.category_id = cd.category_id WHERE cd.language_id = :lang", 
+			query = "SELECT c.category_id, c.parent FROM category AS c LEFT JOIN categorydef AS cd ON c.category_id = cd.category_id WHERE cd.language_id = :lang", 
 			resultClass = Category.class) 
 	})
+@NamedQueries({
+	@NamedQuery(
+		name="findAll",
+		query="from Category "),
+})
 @Entity
 public class Category implements Serializable, Identifiable {
 
@@ -45,13 +54,17 @@ public class Category implements Serializable, Identifiable {
 	@JoinColumn(name = "parent")
 	public Category parentCategory;
 
-	@OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public List<Category> subCategories;
 
 	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SELECT)
-	private Set<CategoryDef> categoryDef = new HashSet<CategoryDef>();
-
+	//private Set<CategoryDef> categoryDef = new HashSet<CategoryDef>();
+	@MapKey(name = "language")
+	private Map<Language, CategoryDef> categoryDef;
+	//private List<CategoryDef> categoryDef;
+	
+	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")
 	private Set<Article> articles = new HashSet<Article>();
 
@@ -104,16 +117,33 @@ public class Category implements Serializable, Identifiable {
 		this.articles = articles;
 	}
 
-	public Set<CategoryDef> getCategoryDef() {
-		return categoryDef;
-	}
+//	public Set<CategoryDef> getCategoryDef() {
+//		return categoryDef;
+//	}
+//
+//	public void setCategoriesDef(Set<CategoryDef> categoryDef) {
+//		this.categoryDef = categoryDef;
+//	}
 
-	public void setCategoriesDef(Set<CategoryDef> categoryDef) {
-		this.categoryDef = categoryDef;
-	}
+	
+//	public List<CategoryDef> getCategoryDef() {
+//		return categoryDef;
+//	}
+//
+//	public void setCategoryDef(List<CategoryDef> categoryDef) {
+//		this.categoryDef = categoryDef;
+//	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Map<Language, CategoryDef> getCategoryDef() {
+		return categoryDef;
+	}
+
+	public void setCategoryDef(Map<Language, CategoryDef> categoryDef) {
+		this.categoryDef = categoryDef;
 	}
 
 	@Override

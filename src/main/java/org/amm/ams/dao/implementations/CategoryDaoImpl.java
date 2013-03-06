@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.amm.ams.dao.interfaces.CategoryDao;
 import org.amm.ams.domain.Category;
-import org.amm.ams.domain.Language;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -21,14 +20,17 @@ public class CategoryDaoImpl extends HibernateJpaDaoCriteria<Category> implement
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Category> find(final Language lang){
+	@Override
+	public List<Category> find(String lang){
 		
 		Criteria criteria = getCriteria();
 		
-		criteria.createAlias("category.categorydef", "categorydef");
-		criteria.createAlias("categorydef.language", "language");
+		criteria.createAlias("categoryDef", "def");
+		criteria.createAlias("def.language", "language");
 		criteria.add(Restrictions.eq("language.prefix", lang));
+		criteria.add(Restrictions.isNull("parentCategory"));
 		
 		return criteria.list();
 	}
+	
 }

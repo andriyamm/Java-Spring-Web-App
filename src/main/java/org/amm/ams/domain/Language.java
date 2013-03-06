@@ -8,12 +8,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+@NamedQueries({
+	@NamedQuery(
+		name="findByPrefix",
+		query="from Language lang where lang.prefix = :prefix "),
+})
 @Entity
 public class Language implements Serializable {
 
@@ -39,14 +46,11 @@ public class Language implements Serializable {
 		super();
 	}
 
-	public Language(Long id, String name, String prefix,
-			Set<CategoryDef> categoryDef, Set<ArticleDef> articleDef) {
+	public Language(Long id, String name, String prefix) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.prefix = prefix;
-		this.categoryDef = categoryDef;
-		this.articleDef = articleDef;
 	}
 
 	public Long getId() {
