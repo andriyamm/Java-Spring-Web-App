@@ -80,8 +80,6 @@ public class ManageCategories {
 			Map<String, Object> params, HttpSession session) {
 
 		String langPrefix = LocaleContextHolder.getLocale().getLanguage();
-		
-		params.put("language", languagesService.findByPrefix(langPrefix));
 		params.put("categories", categoriesDefService.find(langPrefix));
 		
 		return "categories/list";

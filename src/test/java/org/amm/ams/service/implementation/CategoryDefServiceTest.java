@@ -43,17 +43,17 @@ public class CategoryDefServiceTest {
 		assertEquals(true, true);
 	}
 
-	@Test
-	public void testFindAll() {
-		List<CategoryDef> all = new LinkedList<CategoryDef>();
-		all.add(new CategoryDef(1l, "John", new Language(), new Category()));
-		all.add(new CategoryDef(2l, "Jane", new Language(), new Category()));
-
-		// MOCK ALERT: return mocked result set on find
-		when(categoriesDefDao.findAll()).thenReturn(all);
-
-		// MOCK ALERT: verify the method was called
-		//verify(categoriesDefDao).findAll();
-	}
+//	@Test
+//	public void testFindAll() {
+//		List<CategoryDef> all = new LinkedList<CategoryDef>();
+//		all.add(new CategoryDef(1l, "John", new Language(), new Category()));
+//		all.add(new CategoryDef(2l, "Jane", new Language(), new Category()));
+//
+//		// MOCK ALERT: return mocked result set on find
+//		when(categoriesDefDao.findAll()).thenReturn(all);
+//
+//		// MOCK ALERT: verify the method was called
+//		//verify(categoriesDefDao).findAll();
+//	}
 	
 }

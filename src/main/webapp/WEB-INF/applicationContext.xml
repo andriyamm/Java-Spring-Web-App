@@ -28,7 +28,10 @@
 	<context:annotation-config />
 
 	<!-- the packages to be scanned -->
-	<context:component-scan base-package="org.amm.ams" />
+	<context:component-scan base-package="org.amm.ams.domain" />
+	<context:component-scan base-package="org.amm.ams.dao" />
+	<context:component-scan base-package="org.amm.ams.service" />
+
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
