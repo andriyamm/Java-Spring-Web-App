@@ -1,11 +1,12 @@
 package org.amm.ams.web.controllers;
 
-
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.amm.ams.domain.Category;
 import org.amm.ams.service.interfaces.CategoryDefService;
 import org.amm.ams.service.interfaces.LanguageService;
 import org.amm.ams.web.commands.CategoryCommand;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("category")
@@ -85,4 +87,9 @@ public class ManageCategories {
 		return "categories/list";
 	}
 
+	@RequestMapping(value="json/{name}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Category> getShopInJSON(@PathVariable String name) {
+		return null;
+	}
 }

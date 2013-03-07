@@ -19,6 +19,10 @@ import javax.persistence.OneToMany;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import org.amm.ams.utils.json.JsonDateSerializer;
+
 
 @Entity
 public class Article implements Serializable, Identifiable {
@@ -31,7 +35,11 @@ public class Article implements Serializable, Identifiable {
 	private Long id;
 
 	private Boolean is_tmp;
+	
+	@JsonSerialize(using=JsonDateSerializer.class)
 	private Date creationDate;
+	
+	@JsonSerialize(using=JsonDateSerializer.class)
 	private Date publishDate;
 
 	@OneToMany(mappedBy = "article")
