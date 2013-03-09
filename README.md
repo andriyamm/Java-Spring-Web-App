@@ -11,16 +11,16 @@ Technologies, frameworks and tools:
 	Maven.
 
 Plan to add:
-	Spring Security, 
-	Ant/Ivy, 
-	JDO, 
-	Log4j, slf4j
-	Web Services,
-	JUnit, Mockito
-	Jenkins, Hudson
-	HTML5,
-	JavaScript,
-	Jquery,
-	BackBone,
-	CSS
+	Spring Security; 
+	Ant,Ivy; 
+	JDO; 
+	Log4j, slf4j;
+	Web Services,SOAP, REST;
+	JUnit, Mockito;
+	Jenkins, Hudson;
+	HTML5;
+	JavaScript;
+	Jquery;
+	BackBone;
+	CSS;
 	... 

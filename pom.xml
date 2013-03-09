@@ -14,6 +14,8 @@
 		<org.springframework-version>3.1.0.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.9</org.aspectj-version>
 		<org.slf4j-version>1.5.10</org.slf4j-version>
+		<org.springframework.security>3.0.5.RELEASE</org.springframework.security>
+		<hibernate-version>3.6.10.Final</hibernate-version>
 		<warName>ams</warName>
 	</properties>
 	
@@ -159,7 +161,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>3.0.5.RELEASE</version>
+			<version>${org.springframework.security}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -167,7 +169,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>3.0.5.RELEASE</version>
+			<version>${org.springframework.security}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -175,11 +177,13 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>3.0.5.RELEASE</version>
+			<version>${org.springframework.security}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 				
+
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
@@ -197,7 +201,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>3.6.10.Final</version>
+			<version>${hibernate-version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -205,8 +209,9 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.6.10.Final</version>
+			<version>${hibernate-version}</version>
 		</dependency>
+		
 		
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
@@ -254,6 +259,42 @@
 			<groupId>net.java.dev.rome</groupId>
 			<artifactId>rome</artifactId>
 			<version>1.0.0</version>
+		</dependency>
+
+		<!-- Jersey -->
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>1.17</version>
+		</dependency>
+ 
+ 		<!-- Jersey + Spring -->
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-spring</artifactId>
+			<version>1.17</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 	</dependencies>
