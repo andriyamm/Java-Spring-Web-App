@@ -1,4 +1,4 @@
-package org.amm.ams.ws;
+package org.amm.ams.ws.jersey;
 
 import java.util.List;
 
