@@ -16,12 +16,20 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 @NamedQueries({
 	@NamedQuery(
 		name="findByPrefix",
 		query="from Language lang where lang.prefix = :prefix "),
 })
 @Entity
+@XmlRootElement(name = "language")
 public class Language implements Serializable {
 
 	private static final long serialVersionUID = -2678498818708026361L;
@@ -39,7 +47,7 @@ public class Language implements Serializable {
 	@OneToMany(mappedBy = "language")
 	private Set<CategoryDef> categoryDef = new HashSet<CategoryDef>();
 
-	@OneToMany(mappedBy = "language")
+	@OneToMany(mappedBy = "articleLang")
 	private Set<ArticleDef> articleDef = new HashSet<ArticleDef>();
 
 	public Language() {
@@ -53,6 +61,7 @@ public class Language implements Serializable {
 		this.prefix = prefix;
 	}
 
+	@XmlAttribute
 	public Long getId() {
 		return id;
 	}
@@ -61,6 +70,7 @@ public class Language implements Serializable {
 		this.id = id;
 	}
 
+	@XmlElement
 	public String getName() {
 		return name;
 	}
@@ -69,6 +79,7 @@ public class Language implements Serializable {
 		this.name = name;
 	}
 
+	@XmlAttribute
 	public String getPrefix() {
 		return prefix;
 	}
@@ -77,6 +88,8 @@ public class Language implements Serializable {
 		this.prefix = prefix;
 	}
 
+	@JsonIgnore
+	@XmlTransient
 	public Set<CategoryDef> getCategoriesDef() {
 		return categoryDef;
 	}
@@ -85,6 +98,8 @@ public class Language implements Serializable {
 		this.categoryDef = categoriesDef;
 	}
 
+	@JsonIgnore
+	@XmlTransient
 	public Set<ArticleDef> getArticlesDef() {
 		return articleDef;
 	}

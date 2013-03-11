@@ -24,7 +24,13 @@
 	
     <!-- the packages to be scanned -->
 	<context:component-scan base-package="org.amm.ams.web" />
-	
+	<context:component-scan base-package="org.amm.ams.ws" />
+	<context:component-scan base-package="org.amm.ams.rss" />
+
+
+<!-- 	<bean id="categoryDefService" 
+                  class="org.amm.ams.service.implemantations.CategoryDefServiceImpl" />  -->
+                  
     <!-- {begin} bean for tiles -->
 	
 	<bean id="tilesConfigurer"
@@ -67,7 +73,7 @@
 		  		<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
  
 		   		<!-- RSS View -->
-		        <bean class="org.amm.ams.rss.RssFeedView" />
+		        <!-- <bean class="org.amm.ams.rss.RssFeedView" /> -->
  
 		  		<!-- JAXB XML View -->
 		  		<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
@@ -75,7 +81,7 @@
 						<bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
 						    <property name="classesToBeBound">
 								<list>
-							   		<value>org.amm.ams.domain.Article</value>
+							   		<value>org.amm.ams.domain.Language</value>
 								</list>
 						    </property>
 						</bean>

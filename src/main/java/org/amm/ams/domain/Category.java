@@ -22,6 +22,8 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -41,6 +43,7 @@ import org.hibernate.annotations.FetchMode;
 		query="from Category "),
 })
 @Entity
+//@XmlRootElement(name = "category")
 public class Category implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -3582413995673329122L;
@@ -48,6 +51,7 @@ public class Category implements Serializable, Identifiable {
 	@Id
 	@GeneratedValue
 	@Column(name = "category_id")
+	//@XmlElement
 	private Long id;
 
 	@ManyToOne
@@ -59,9 +63,10 @@ public class Category implements Serializable, Identifiable {
 
 	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SELECT)
-	//private Set<CategoryDef> categoryDef = new HashSet<CategoryDef>();
 	@MapKey(name = "language")
 	private Map<Language, CategoryDef> categoryDef;
+	
+	//private Set<CategoryDef> categoryDef = new HashSet<CategoryDef>();
 	//private List<CategoryDef> categoryDef;
 	
 	

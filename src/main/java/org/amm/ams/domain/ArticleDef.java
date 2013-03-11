@@ -35,7 +35,7 @@ public class ArticleDef implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "language_id")
-	private Language language;
+	private Language articleLang;
 
 	public ArticleDef() {
 	}
@@ -46,7 +46,7 @@ public class ArticleDef implements Serializable {
 		this.article = article;
 		this.title = title;
 		this.body = body;
-		this.language = language;
+		this.articleLang = language;
 	}
 
 	public Long getId() {
@@ -73,12 +73,12 @@ public class ArticleDef implements Serializable {
 		this.body = body;
 	}
 
-	public Language getLanguage() {
-		return language;
+	public Language getArticleLang() {
+		return articleLang;
 	}
 
-	public void setLanguage(Language language) {
-		this.language = language;
+	public void setArticleLang(Language articleLang) {
+		this.articleLang = articleLang;
 	}
 
 	public static long getSerialversionuid() {
@@ -96,7 +96,7 @@ public class ArticleDef implements Serializable {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(article)
-				.append(title).append(body).append(language).toHashCode();
+				.append(title).append(body).append(articleLang).toHashCode();
 	}
 
 	@Override
@@ -114,13 +114,13 @@ public class ArticleDef implements Serializable {
 		ArticleDef rhs = (ArticleDef) obj;
 		return new EqualsBuilder().append(id, rhs.id).append(title, rhs.title)
 				.append(article, rhs.article).append(body, rhs.body)
-				.append(language, rhs.language).isEquals();
+				.append(articleLang, rhs.articleLang).isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id)
 				.append("title", title).append("article", article)
-				.append("body", body).append("lang", language).toString();
+				.append("body", body).append("lang", articleLang).toString();
 	}
 }
