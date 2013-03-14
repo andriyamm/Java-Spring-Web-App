@@ -5,10 +5,13 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.amm.ams.service.interfaces.ArticleService;
+import org.amm.ams.service.interfaces.CategoryDefService;
+import org.amm.ams.service.interfaces.LanguageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,6 +21,12 @@ public class ManageArticles {
 
 	@Autowired
 	private ArticleService articleService;
+	
+	@Autowired
+	private CategoryDefService categoriesDefService;
+	
+	@Autowired
+	private LanguageService languagesService;
 	
 	@RequestMapping("list")
 	public String listArticles(Map<String, Object> params, HttpSession sess){
@@ -31,9 +40,10 @@ public class ManageArticles {
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createAddArticleForm(Map<String, Object> params, HttpSession sess){
 		
-		params.put("articles", articleService.findAll());
+		params.put("languages", languagesService.findAll());
+		params.put("categories", categoriesDefService.findAll());
 		
-		return "articles/list";
+		return "articles/create";
 	}
 	
 	@RequestMapping(value = "create", method = RequestMethod.POST)
@@ -44,8 +54,9 @@ public class ManageArticles {
 		return "articles/list";
 	}
 	
-	@RequestMapping(value = "edit", method = RequestMethod.GET)
-	public String createEditArticleForm(Map<String, Object> params, HttpSession sess){
+	@RequestMapping(value = "edit/{articleId}", method = RequestMethod.GET)
+	public String createEditArticleForm(@PathVariable("articleId") Long articleId,
+			Map<String, Object> params, HttpSession sess){
 		
 		params.put("articles", articleService.findAll());
 		
@@ -58,5 +69,14 @@ public class ManageArticles {
 		params.put("articles", articleService.findAll());
 		
 		return "articles/list";
+	}
+	
+	@RequestMapping(value = "view/{articleId}", method = RequestMethod.GET)
+	public String viewArticle(@PathVariable("articleId") Long articleId,
+			Map<String, Object> params, HttpSession sess){
+		
+		params.put("article", articleService.findByID(articleId));
+		
+		return "articles/view";
 	}
 }

@@ -17,6 +17,7 @@
 	</definition>
 
 	<!-- pages -->
+	
 
 	<definition name="list" extends="baseLayout">
 		<put-attribute name="title" value="list" />
@@ -26,6 +27,7 @@
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 	</definition>
 
+	<!-- articles -->
 	<definition name="createArticle" extends="baseLayout">
 		<put-attribute name="title" value="list" />
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
@@ -33,7 +35,32 @@
 		<put-attribute name="sidebar" value="/WEB-INF/tiles/sidebar.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 	</definition>
+
+	<definition name="listArticle" extends="baseLayout">
+		<put-attribute name="title" value="list" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/articles/list.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/tiles/sidebar.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="editArticle" extends="baseLayout">
+		<put-attribute name="title" value="list" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/articles/edit.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/tiles/sidebar.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="viewArticle" extends="baseLayout">
+		<put-attribute name="title" value="list" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/articles/view.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/tiles/sidebar.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
 	
+	<!-- categories -->
 	<definition name="createCategory" extends="baseLayout">
 		<put-attribute name="title" value="list" />
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
