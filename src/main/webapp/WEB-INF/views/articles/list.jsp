@@ -10,9 +10,10 @@
 		<li>
 			<a href="${article.id}">
 				<span>
-					<c:out value="${article.title}" />
+					<c:out value="${article.articlesDef}" />
 				</span>
 			</a>
+
 		</li>
 	</c:forEach>
 	</c:if>

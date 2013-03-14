@@ -36,10 +36,11 @@ public class Article implements Serializable, Identifiable {
 
 	private Boolean is_tmp;
 	
-	//@JsonSerialize(using=JsonDateSerializer.class)
+	@JsonSerialize(using=JsonDateSerializer.class)
+	@Column(nullable = false)
 	private Date creationDate;
 	
-	//@JsonSerialize(using=JsonDateSerializer.class)
+	@JsonSerialize(using=JsonDateSerializer.class)
 	private Date publishDate;
 
 	@OneToMany(mappedBy = "article")

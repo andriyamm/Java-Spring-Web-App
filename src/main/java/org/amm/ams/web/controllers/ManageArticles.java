@@ -32,7 +32,8 @@ public class ManageArticles {
 	public String listArticles(Map<String, Object> params, HttpSession sess){
 		
 		String langPrefix = LocaleContextHolder.getLocale().getLanguage();
-		params.put("articles", articleService.findAll());
+		params.put("articles", articleService.findAllForLang(langPrefix));
+		params.put("categories", categoriesDefService.find(langPrefix));
 		
 		return "articles/list";
 	}

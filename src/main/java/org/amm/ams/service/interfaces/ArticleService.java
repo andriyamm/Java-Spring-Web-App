@@ -7,4 +7,6 @@ import org.amm.ams.domain.Article;
 public interface ArticleService extends AmsService<Article> {
 
 	List<Article> find();
+
+	List<Article> findAllForLang(String langPrefix);
 }
