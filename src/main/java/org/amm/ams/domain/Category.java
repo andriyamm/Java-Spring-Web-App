@@ -22,8 +22,6 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -154,10 +152,7 @@ public class Category implements Serializable, Identifiable {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id)
-				//.append(articles)
-				//.append(categoryDef)
 				.append(parentCategory)
-				//.append(subCategories)
 				.toHashCode();
 	}
 
@@ -175,20 +170,14 @@ public class Category implements Serializable, Identifiable {
 
 		Category rhs = (Category) obj;
 		return new EqualsBuilder().append(id, rhs.id)
-				//.append(articles, rhs.articles)
 				.append(parentCategory, rhs.parentCategory)
-				//.append(subCategories, rhs.subCategories)
-				//.append(categoryDef, rhs.categoryDef)
 				.isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id)
-				//.append("articles", articles)
 				.append("parentCategory", parentCategory)
-				//.append("categoryDef", categoryDef)
-				//.append("subCategories", subCategories)
 				.toString();
 	}
 
