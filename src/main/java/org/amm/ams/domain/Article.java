@@ -24,6 +24,12 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.amm.ams.utils.json.JsonDateSerializer;
 
 
+@NamedQueries({
+	@NamedQuery(
+		name="findAllForLang",
+		query="select a.id, a.creationDate, ad.title, lang.prefix from Article as a join Article.articlesDef as ad join ad.articleLang as lang"
+		resultClass = ArticleDto.class),
+})
 @Entity
 public class Article implements Serializable, Identifiable {
 

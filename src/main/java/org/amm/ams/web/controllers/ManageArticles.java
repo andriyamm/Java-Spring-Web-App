@@ -76,6 +76,7 @@ public class ManageArticles {
 	public String viewArticle(@PathVariable("articleId") Long articleId,
 			Map<String, Object> params, HttpSession sess){
 		
+
 		params.put("article", articleService.findByID(articleId));
 		
 		return "articles/view";

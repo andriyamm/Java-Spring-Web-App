@@ -11,19 +11,19 @@ public class CategotyDto {
 
 	private Long id;
 	private String name;
-	private Long lang_id;
+	private String langPrefix;
 	private List<CategotyDto> categotyDtos;
 
 	public CategotyDto() {
 		super();
 	}
 
-	public CategotyDto(Long id, String name, Long lang_id,
+	public CategotyDto(Long id, String name, String langPrefix,
 			List<CategotyDto> categoryDtos) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.lang_id = lang_id;
+		this.langPrefix = langPrefix;
 		this.categotyDtos = categoryDtos;
 	}
 
@@ -50,12 +50,12 @@ public class CategotyDto {
 		this.name = name;
 	}
 
-	public Long getLang_id() {
-		return lang_id;
+	public String getLangPrefix() {
+		return langPrefix;
 	}
 
-	public void setLang_id(Long lang_id) {
-		this.lang_id = lang_id;
+	public void setLangPrefix(String langPrefix) {
+		this.langPrefix = langPrefix;
 	}
 
 	public List<CategotyDto> getCategotyDtos() {
@@ -69,7 +69,7 @@ public class CategotyDto {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(name)
-				.append(lang_id).toHashCode();
+				.append(langPrefix).toHashCode();
 	}
 
 	@Override
@@ -86,12 +86,12 @@ public class CategotyDto {
 
 		CategotyDto rhs = (CategotyDto) obj;
 		return new EqualsBuilder().append(id, rhs.id).append(name, rhs.name)
-				.append(lang_id, rhs.lang_id).isEquals();
+				.append(langPrefix, rhs.langPrefix).isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id).append("name", name)
-				.append("lang_id", lang_id).toString();
+				.append("langPrefix", langPrefix).toString();
 	}
 }

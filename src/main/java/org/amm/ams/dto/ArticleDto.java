@@ -6,25 +6,30 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class ArticleDto {
+public class ArticleDto implements Serializable{
+
+		private static final long serialVersionUID = -816296721109914777L;
 
 	private Long id;
 	private String title;
 	private String body;
-	private Long lang_id;
+	private String langPrefix;
 	private Date creationDate;
+	private Date publishDate;
+	private Boolean is_tmp;
+	private Long articledefId;
 
 	public ArticleDto() {
 		super();
 	}
 
-	public ArticleDto(Long id, String title, String body, Long lang_id,
+	public ArticleDto(Long id, String title, String body, String langPrefix,
 			Date creationDate) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.body = body;
-		this.lang_id = lang_id;
+		this.langPrefix = langPrefix;
 		this.creationDate = creationDate;
 	}
 
@@ -71,7 +76,7 @@ public class ArticleDto {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(title)
-				.append(creationDate).append(body).append(lang_id)
+				.append(creationDate).append(body).append(langPrefix)
 				.toHashCode();
 	}
 
@@ -92,7 +97,7 @@ public class ArticleDto {
 				.append(title, rhs.title)
 				.append(creationDate, rhs.creationDate)
 				.append(body, rhs.body)
-				.append(lang_id, rhs.lang_id)
+				.append(langPrefix, rhs.langPrefix)
 				.isEquals();
 	}
 
@@ -102,7 +107,7 @@ public class ArticleDto {
 				.append("title", title)
 				.append("creationDate", creationDate)
 				.append("body", body)
-				.append("lang_id", lang_id)
+				.append("langPrefix", langPrefix)
 				.toString();
 	}
 
