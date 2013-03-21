@@ -13,7 +13,7 @@
 		<java-version>1.6</java-version>
 		<org.springframework-version>3.1.0.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.9</org.aspectj-version>
-		<org.slf4j-version>1.5.10</org.slf4j-version>
+		<org.slf4j-version>1.5.8</org.slf4j-version>
 		<org.springframework.security>3.1.3.RELEASE</org.springframework.security>
 		<hibernate-version>3.6.10.Final</hibernate-version>
 		<warName>ams</warName>
@@ -51,6 +51,13 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+          	 	<exclusion>
+               		<artifactId>commons-logging</artifactId>
+               		<groupId>commons-logging</groupId>
+        	  	</exclusion>
+	        </exclusions>
 		</dependency>
 		
 		<!-- Spring Object/XML Marshalling -->
@@ -92,6 +99,31 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -321,6 +353,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+
 		<!-- For developing against latest Spring milestones -->
 		<repository>
 			<id>org.springframework.maven.milestone</id>
@@ -330,6 +363,12 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+
+		<repository>
+			<id>JBoss repository</id>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+
 	</repositories>
 	
 	<build>
