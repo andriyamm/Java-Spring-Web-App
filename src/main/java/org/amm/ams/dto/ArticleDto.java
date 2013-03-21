@@ -1,36 +1,44 @@
 package org.amm.ams.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class ArticleDto implements Serializable{
+public class ArticleDto implements Serializable {
 
-		private static final long serialVersionUID = -816296721109914777L;
+	private static final long serialVersionUID = -816296721109914777L;
 
 	private Long id;
-	private String title;
-	private String body;
-	private String langPrefix;
 	private Date creationDate;
 	private Date publishDate;
 	private Boolean is_tmp;
+	
+	private String title;
+	private String body;
 	private Long articledefId;
+
+	private String langPrefix;
+
 
 	public ArticleDto() {
 		super();
 	}
 
 	public ArticleDto(Long id, String title, String body, String langPrefix,
-			Date creationDate) {
+			Date creationDate, Date publishDate, Boolean is_tmp,
+			Long articledefId) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.body = body;
 		this.langPrefix = langPrefix;
 		this.creationDate = creationDate;
+		this.publishDate = publishDate;
+		this.is_tmp = is_tmp;
+		this.articledefId = articledefId;
 	}
 
 	public Long getId() {
@@ -57,12 +65,40 @@ public class ArticleDto implements Serializable{
 		this.body = body;
 	}
 
-	public Long getLang_id() {
-		return lang_id;
+	public String getLangPrefix() {
+		return langPrefix;
 	}
 
-	public void setLang_id(Long lang_id) {
-		this.lang_id = lang_id;
+	public void setLangPrefix(String langPrefix) {
+		this.langPrefix = langPrefix;
+	}
+
+	public Date getPublishDate() {
+		return publishDate;
+	}
+
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
+	}
+
+	public Boolean getIs_tmp() {
+		return is_tmp;
+	}
+
+	public void setIs_tmp(Boolean is_tmp) {
+		this.is_tmp = is_tmp;
+	}
+
+	public Long getArticledefId() {
+		return articledefId;
+	}
+
+	public void setArticledefId(Long articledefId) {
+		this.articledefId = articledefId;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public Date getCreationDate() {
@@ -72,11 +108,12 @@ public class ArticleDto implements Serializable{
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(title)
 				.append(creationDate).append(body).append(langPrefix)
+				.append(publishDate).append(is_tmp).append(articledefId)
 				.toHashCode();
 	}
 
@@ -93,22 +130,21 @@ public class ArticleDto implements Serializable{
 		}
 
 		ArticleDto rhs = (ArticleDto) obj;
-		return new EqualsBuilder().append(id, rhs.id)
-				.append(title, rhs.title)
-				.append(creationDate, rhs.creationDate)
-				.append(body, rhs.body)
-				.append(langPrefix, rhs.langPrefix)
-				.isEquals();
+		return new EqualsBuilder().append(id, rhs.id).append(title, rhs.title)
+				.append(creationDate, rhs.creationDate).append(body, rhs.body)
+				.append(publishDate, rhs.publishDate)
+				.append(is_tmp, rhs.is_tmp)
+				.append(articledefId, rhs.articledefId)
+				.append(langPrefix, rhs.langPrefix).isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id)
-				.append("title", title)
-				.append("creationDate", creationDate)
-				.append("body", body)
-				.append("langPrefix", langPrefix)
-				.toString();
+				.append("title", title).append("creationDate", creationDate)
+				.append("body", body).append("langPrefix", langPrefix)
+				.append("publishDate", publishDate).append("is_tmp", is_tmp)
+				.append("articledefId", articledefId).toString();
 	}
 
 }

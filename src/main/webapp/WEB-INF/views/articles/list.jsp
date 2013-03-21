@@ -10,7 +10,7 @@
 		<li>
 			<a href="${article.id}">
 				<span>
-					<c:out value="${article.articlesDef}" />
+					<c:out value="${article.title}" />
 				</span>
 			</a>
 

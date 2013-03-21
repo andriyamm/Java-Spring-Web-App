@@ -14,21 +14,31 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import org.amm.ams.dto.ArticleDto;
+import org.amm.ams.utils.json.JsonDateSerializer;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import org.amm.ams.utils.json.JsonDateSerializer;
-
-
-@NamedQueries({
-	@NamedQuery(
-		name="findAllForLang",
-		query="select a.id, a.creationDate, ad.title, lang.prefix from Article as a join Article.articlesDef as ad join ad.articleLang as lang"
-		resultClass = ArticleDto.class),
+//@NamedQueries(
+//		{ @NamedQuery(
+//			name = "findAllArticlesForLang",
+//			query = "SELECT article.article_id as id, article.creationDate as creationDate, article.publishDate as publishDate,article.is_tmp as is_tmp,articledef.title as title,articledef.body as body,articledef.articledefId as articledefId,language.langPrefix as langPrefix FROM article LEFT JOIN articledef ON article.article_id = articledef.article_id LEFT JOIN language ON articledef.language_id = language.language_id WHERE language.prefix =  :prefix"
+//		)
+//})
+@NamedNativeQueries({ 
+	@NamedNativeQuery(
+			name = "findAllArticlesByLang", 
+			query = "SELECT article.article_id as id, article.creationDate as creationDate, article.publishDate as publishDate, article.is_tmp as is_tmp, articledef.title as title, articledef.body as body, articledef.articledef_id as articledefId, language.prefix as langPrefix FROM article as article LEFT JOIN articledef as articledef ON article.article_id = articledef.article_id LEFT JOIN language as language ON articledef.language_id = language.language_id WHERE language.prefix = :prefix",
+			resultClass = ArticleDto.class
+	) 
 })
 @Entity
 public class Article implements Serializable, Identifiable {
@@ -41,12 +51,12 @@ public class Article implements Serializable, Identifiable {
 	private Long id;
 
 	private Boolean is_tmp;
-	
-	@JsonSerialize(using=JsonDateSerializer.class)
+
+	@JsonSerialize(using = JsonDateSerializer.class)
 	@Column(nullable = false)
 	private Date creationDate;
-	
-	@JsonSerialize(using=JsonDateSerializer.class)
+
+	@JsonSerialize(using = JsonDateSerializer.class)
 	private Date publishDate;
 
 	@OneToMany(mappedBy = "article")
@@ -70,8 +80,7 @@ public class Article implements Serializable, Identifiable {
 	protected Article() {
 	}
 
-	public Article(Long id, Boolean is_tmp, Date creationDate,
-			Date publishDate) {
+	public Article(Long id, Boolean is_tmp, Date creationDate, Date publishDate) {
 		super();
 		this.id = id;
 		this.is_tmp = is_tmp;
@@ -158,8 +167,7 @@ public class Article implements Serializable, Identifiable {
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(id).append(is_tmp)
-				.append(creationDate).append(publishDate)
-				.toHashCode();
+				.append(creationDate).append(publishDate).toHashCode();
 	}
 
 	@Override
@@ -178,16 +186,13 @@ public class Article implements Serializable, Identifiable {
 		return new EqualsBuilder().append(id, rhs.id)
 				.append(is_tmp, rhs.is_tmp)
 				.append(creationDate, rhs.creationDate)
-				.append(publishDate, rhs.publishDate)
-				.isEquals();
+				.append(publishDate, rhs.publishDate).isEquals();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("id", id)
-				.append("is_tmp", is_tmp)
-				.append("creationDate", creationDate)
-				.append("publishDate", publishDate)
-				.toString();
+				.append("is_tmp", is_tmp).append("creationDate", creationDate)
+				.append("publishDate", publishDate).toString();
 	}
 }

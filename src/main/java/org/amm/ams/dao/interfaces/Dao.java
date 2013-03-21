@@ -2,6 +2,9 @@ package org.amm.ams.dao.interfaces;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+
+import org.amm.ams.dto.ArticleDto;
 
 /**
  * Basic data access object, for all entites.

@@ -5,6 +5,7 @@ import java.util.List;
 import org.amm.ams.dao.interfaces.ArticleDao;
 import org.amm.ams.dao.interfaces.Dao;
 import org.amm.ams.domain.Article;
+import org.amm.ams.dto.ArticleDto;
 import org.amm.ams.service.interfaces.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,9 @@ public class ArticleServiceImpl extends AmsServiceImpl<Article> implements Artic
 
 	@Override
 	@Transactional
-	public List<Article> findAllForLang(String langPrefix) {
-		return articleDao.findAllForLang(langPrefix);
+	public List<ArticleDto> findAllByLang(String langPrefix) {
+		//return articleDao.findAllByLang(langPrefix);
+		return articleDao.findAllByLangNamedQuery(langPrefix);
 	}
 
 	//@Autowired

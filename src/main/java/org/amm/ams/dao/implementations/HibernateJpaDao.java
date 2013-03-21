@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import org.amm.ams.dao.interfaces.Dao;
 import org.amm.ams.dao.interfaces.FindableDaoNamedQuery;
+import org.amm.ams.dto.ArticleDto;
 import org.springframework.beans.factory.annotation.Required;
 
 //public class HibernateJpaDao<T extends Identifiable> implements Dao<T> {
@@ -103,9 +104,9 @@ public class HibernateJpaDao<T> implements Dao<T>, FindableDaoNamedQuery<T> {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public List<T> findByNamedQueryAndNamedParams(final String name,
+	public List findByNamedQueryAndNamedParams(final String name,
 			final Map<String, ? extends Object> params) {
 
 		javax.persistence.Query query = getEntityManager().createNamedQuery(
@@ -116,8 +117,8 @@ public class HibernateJpaDao<T> implements Dao<T>, FindableDaoNamedQuery<T> {
 			query.setParameter(param.getKey(), param.getValue());
 		}
 
-		final List<T> result = (List<T>) query.getResultList();
-		return result;
+		//final List<T> result = (List<T>) query.getResultList();
+		return query.getResultList();
 	}
-
+	
 }

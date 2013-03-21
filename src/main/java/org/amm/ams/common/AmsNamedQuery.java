@@ -9,4 +9,8 @@ public interface AmsNamedQuery {
 	interface Language {
 		String FIND_BY_PREFIX = "findByPrefix";
 	}
+	
+	interface Article{
+		String FIND_ALL_ARTICLES_BY_LANG = "findAllArticlesByLang";
+	}
 }
