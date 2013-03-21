@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.amm.ams.dao.interfaces.FindableDaoCriteria;
+import org.amm.ams.dto.ArticleDto;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
@@ -99,4 +100,8 @@ public class HibernateJpaDaoCriteria<T> extends HibernateJpaDao<T> implements
 		return session.createCriteria(getPersistentClass());
 	}
 
+	protected Criteria getCriteria(Class<ArticleDto> class1 ) {
+		Session session = (Session) getEntityManager().getDelegate();
+		return session.createCriteria(class1);
+	}
 }
