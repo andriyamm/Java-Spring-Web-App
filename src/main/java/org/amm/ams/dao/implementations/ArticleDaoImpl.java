@@ -36,14 +36,31 @@ public class ArticleDaoImpl extends HibernateJpaDaoCriteria<Article> implements 
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Article> findAllForLang(String langPrefix) {
+	public List<ArticleDto> findAllByLang(String langPrefix) {
+		
 		Criteria criteria = getCriteria(ArticleDto.class);
 		
 	
 		criteria.createAlias("articlesDef", "def");
 		criteria.createAlias("def.articleLang", "language");
 		criteria.add(Restrictions.eq("language.prefix", langPrefix));
+		criteria.setResultTransformer(Transformers.aliasToBean(ArticleDto.class));
+
+		return criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArticleDto findByIdAndLang(Long articleId, String langPrefix) {
 		
+		Criteria criteria = getCriteria();
+		
+		criteria.createAlias("articlesDef", "def");
+		criteria.createAlias("def.articleLang", "language");
+		criteria.add(Restrictions.eq("language.prefix", langPrefix));
+		criteria.add(Restrictions.eq("id", articleId));
+		criteria.setResultTransformer(Transformers.aliasToBean(ArticleDto.class));
+
 		return criteria.list();
 	}
 
