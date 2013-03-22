@@ -33,13 +33,13 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 //			query = "SELECT article.article_id as id, article.creationDate as creationDate, article.publishDate as publishDate,article.is_tmp as is_tmp,articledef.title as title,articledef.body as body,articledef.articledefId as articledefId,language.langPrefix as langPrefix FROM article LEFT JOIN articledef ON article.article_id = articledef.article_id LEFT JOIN language ON articledef.language_id = language.language_id WHERE language.prefix =  :prefix"
 //		)
 //})
-@NamedNativeQueries({ 
-	@NamedNativeQuery(
-			name = "findAllArticlesByLang", 
-			query = "SELECT article.article_id as id, article.creationDate as creationDate, article.publishDate as publishDate, article.is_tmp as is_tmp, articledef.title as title, articledef.body as body, articledef.articledef_id as articledefId, language.prefix as langPrefix FROM article as article LEFT JOIN articledef as articledef ON article.article_id = articledef.article_id LEFT JOIN language as language ON articledef.language_id = language.language_id WHERE language.prefix = :prefix",
-			resultClass = ArticleDto.class
-	) 
-})
+//@NamedNativeQueries({ 
+//	@NamedNativeQuery(
+//			name = "findAllArticlesByLang", 
+//			query = "SELECT article.article_id as id, article.creationDate as creationDate, article.publishDate as publishDate, article.is_tmp as is_tmp, articledef.title as title, articledef.body as body, articledef.articledef_id as articledefId, language.prefix as langPrefix FROM article as article LEFT JOIN articledef as articledef ON article.article_id = articledef.article_id LEFT JOIN language as language ON articledef.language_id = language.language_id WHERE language.prefix = :prefix",
+//			resultClass = ArticleDto.class
+//	) 
+//})
 @Entity
 public class Article implements Serializable, Identifiable {
 

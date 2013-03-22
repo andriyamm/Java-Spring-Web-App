@@ -41,10 +41,10 @@
 		<!-- <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
         <load-on-startup>1</load-on-startup> -->
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!-- <init-param>
+		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/applicationContext.xml</param-value>
-		</init-param> -->
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -94,5 +94,16 @@
 	<welcome-file-list>
 		<welcome-file>/WEB-INF/views/home.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<!--  Exceptions -->
+ 	<error-page>
+    	<exception-type>java.lang.Throwable</exception-type>
+   		<location>/WEB-INF/view/service/errorPage.jsp</location>
+ 	</error-page>
 
+ 	<error-page>
+   		<error-code>404</error-code>
+   		<location>/WEB-INF/view/service/error404.jsp</location>
+ 	</error-page>
+  
 </web-app>
