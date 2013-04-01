@@ -8,7 +8,7 @@
 	<c:if test="${!empty articles}">
 	<c:forEach var="article" items="${articles}">
 		<li>
-			<a href="${article.id}">
+			<a href="view/${article.id}">
 				<span>
 					<c:out value="${article.title}" />
 				</span>

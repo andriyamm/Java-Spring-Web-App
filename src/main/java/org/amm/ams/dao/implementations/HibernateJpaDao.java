@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import org.amm.ams.dao.interfaces.Dao;
 import org.amm.ams.dao.interfaces.FindableDaoNamedQuery;
 import org.amm.ams.dto.ArticleDto;
+import org.hibernate.ejb.HibernateEntityManager;
 import org.springframework.beans.factory.annotation.Required;
 
 //public class HibernateJpaDao<T extends Identifiable> implements Dao<T> {
@@ -43,7 +44,7 @@ public class HibernateJpaDao<T> implements Dao<T>, FindableDaoNamedQuery<T> {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-
+	
 	public Class<T> getPersistentClass() {
 		return persistentClass;
 	}

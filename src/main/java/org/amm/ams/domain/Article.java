@@ -19,28 +19,29 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import org.amm.ams.dto.ArticleDto;
 import org.amm.ams.utils.json.JsonDateSerializer;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-//@NamedQueries(
-//		{ @NamedQuery(
-//			name = "findAllArticlesForLang",
-//			query = "SELECT article.article_id as id, article.creationDate as creationDate, article.publishDate as publishDate,article.is_tmp as is_tmp,articledef.title as title,articledef.body as body,articledef.articledefId as articledefId,language.langPrefix as langPrefix FROM article LEFT JOIN articledef ON article.article_id = articledef.article_id LEFT JOIN language ON articledef.language_id = language.language_id WHERE language.prefix =  :prefix"
-//		)
-//})
-//@NamedNativeQueries({ 
-//	@NamedNativeQuery(
-//			name = "findAllArticlesByLang", 
-//			query = "SELECT article.article_id as id, article.creationDate as creationDate, article.publishDate as publishDate, article.is_tmp as is_tmp, articledef.title as title, articledef.body as body, articledef.articledef_id as articledefId, language.prefix as langPrefix FROM article as article LEFT JOIN articledef as articledef ON article.article_id = articledef.article_id LEFT JOIN language as language ON articledef.language_id = language.language_id WHERE language.prefix = :prefix",
-//			resultClass = ArticleDto.class
-//	) 
-//})
+@NamedQueries(
+		{ @NamedQuery(
+			name = "findAllArticlesForLang",
+			query = "from Article"
+		)
+})
+@NamedNativeQueries({ 
+	@NamedNativeQuery(
+			name = "findAllArticlesByLang", 
+			query = "SELECT * FROM article",
+			resultClass = Article.class
+	) 
+})
 @Entity
+@Table(name = "article")
 public class Article implements Serializable, Identifiable {
 
 	private static final long serialVersionUID = -816296721109914665L;
