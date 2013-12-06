@@ -1,6 +1,4 @@
-octo-ninja-ams
-==============
-Test web application.
+Java test web application.
 
 Technologies, frameworks and tools:
 	Java,
@@ -9,18 +7,3 @@ Technologies, frameworks and tools:
 	tomcat;
 	MySql;
 	Maven.
-
-Plan to add:
-	Spring Security; 
-	Ant,Ivy; 
-	JDO; 
-	Log4j, slf4j;
-	Web Services,SOAP, REST;
-	JUnit, Mockito;
-	Jenkins, Hudson;
-	HTML5;
-	JavaScript;
-	Jquery;
-	BackBone;
-	CSS;
-	... 
